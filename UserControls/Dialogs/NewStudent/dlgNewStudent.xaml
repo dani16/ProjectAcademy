@@ -1,0 +1,113 @@
+﻿<Window x:Class="dlgNewStudent"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ProjectAcademy"
+    Title="Create new student" HorizontalAlignment="Center" MinWidth="700" Width="700" MaxWidth="800" Height="500"
+    WindowStyle="None" AllowsTransparency="True" ResizeMode="CanResizeWithGrip" Background="Transparent" Top="0"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!-- Style TextBlocks -->
+        <Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="MaxWidth" Value="300" />
+            <Setter Property="Foreground" Value="{DynamicResource clrBlueWhite}" />
+        </Style>
+
+        <!-- Style Button -->
+        <Style x:Key="styleButtonDialogMenu" TargetType="Button">
+            <Setter Property="Margin" Value="0,3,0,5" />
+            <Setter Property="MinHeight" Value="25" />
+            <Setter Property="MinWidth" Value="130" />
+            <Setter Property="MaxWidth" Value="180" />
+            <Setter Property="Button.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+            <Setter Property="Button.FontWeight" Value="Bold" />
+            <Setter Property="Button.FontSize" Value="12" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="Button" BorderThickness="1" BorderBrush="{DynamicResource clrDarkestBlue}" CornerRadius="5,5,5,5" Padding="15">
+                            <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <!-- Button IsEnabled -->
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Button" Property="Opacity" Value="0.5"/>
+                            </Trigger>
+
+                            <!-- Button Pressed -->
+                            <Trigger Property="IsPressed" Value="False">
+                                <Setter TargetName="Button" Property="Background" Value="{DynamicResource grdntHoverTabBackground}"/>
+                            </Trigger>
+
+                            <!-- Button Mouse Over -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Button" Property="Background" Value="{DynamicResource grdntUnselectedTabBackground}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontWeight" Value="Normal"/>
+                                <Setter TargetName="Button" Property="BorderThickness" Value="1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style BorderDialogMenu -->
+        <Style x:Key="styleBorderDialogMenu">
+            <Setter Property="Border.Padding" Value="10"/>
+            <Setter Property="Border.Margin" Value="10"/>
+            <Setter Property="Border.BorderThickness" Value="3"/>
+            <Setter Property="Border.BorderBrush" Value="{DynamicResource clrDarkestBlue}" />
+            <Setter Property="Border.CornerRadius" Value="7,7,7,7" />
+            <Setter Property="Border.MaxWidth" Value="400" />
+            <Setter Property="Panel.Background" Value="{DynamicResource clrNormalBlue}" />
+        </Style>
+    </Window.Resources>
+    <Border Style="{DynamicResource styleDialog}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="False">
+            <Grid Margin="75,20,75,20" Button.Click="gridClicked">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- Title Personal Information -->
+                <TextBlock Text="{DynamicResource label.create_new_student}" Grid.Row="0" FontSize="30" HorizontalAlignment="Center" Foreground="{DynamicResource clrDarkestBlue}" FontWeight="SemiBold" Margin="0,0,0,5"/>
+
+                <StackPanel Name="stckPnlMenuNewStudent" Grid.Row="1">
+                    <!-- Button New Person -->
+                    <Border Style="{DynamicResource styleBorderDialogMenu}">
+                        <StackPanel>
+                            <TextBlock Text="Create a totally new student on the academy." Grid.Row="1" Margin="0,0,0,0" />
+                            <Button Name="btnNewPersonStudent" Content="New person" Style="{DynamicResource styleButtonDialogMenu}" Margin="0,10,0,5"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Button Existing Person (Deleted Person, Teacher)-->
+                    <Border Style="{DynamicResource styleBorderDialogMenu}">
+                        <StackPanel>
+                            <TextBlock Text="Create a new student using an already existing person, like a reactivating a deleted student or a teacher." Grid.Row="3"/>
+                            <Button Name="btnExistingPersonStudent" Grid.Row="4" Content="Already existing person" Style="{DynamicResource styleButtonDialogMenu}" Margin="0,10,0,5"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Button Exit-->
+                    <Border Style="{DynamicResource styleBorderDialogMenu}">
+                        <StackPanel>
+                            <TextBlock Text="Cancel the creation of a new Student." Grid.Row="3"/>
+                            <Button Name="btnExitCreateStudent" Grid.Row="5" Content="Exit" Style="{DynamicResource styleButtonDialogMenu}" Margin="0,10,0,5"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Creation new Student -->
+                <StackPanel Grid.Row="2" Name="stckPnlCreateNewStudent">
+
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Border>
+</Window>

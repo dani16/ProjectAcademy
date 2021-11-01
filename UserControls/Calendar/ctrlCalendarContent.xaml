@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="ctrlCalendarContent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" >
+    <UserControl.Resources>
+        <!-- Style TextBox Headers -->
+        <Style x:Key="styleCalendarTextHeader" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{DynamicResource clrBlueWhite}"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="Margin" Value="5,3"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Style Image Previous -->
+        <Style x:Key="styleImgPrevious" TargetType="Image">
+            <Setter Property="Source" Value="/Images/Basic/previous_light.png"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Source" Value="/Images/Basic/previous_dark.png"/>
+                    </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Style Image Previous -->
+        <Style x:Key="styleImgNext" TargetType="Image">
+            <Setter Property="Source" Value="/Images/Basic/next_light.png"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Source" Value="/Images/Basic/next_dark.png"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Border CornerRadius="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- ToolBar Calendar-->
+            <Border Style="{DynamicResource styleBorderSearcher}" Background="{DynamicResource clrLightBlue}" Margin="0,0,0,20" MaxWidth="700">
+                <Grid Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <!-- Button Add Event -->
+                    <Button Name="btnAddEvent" Grid.Column="0" Content="{DynamicResource button.add_new_event}" Style="{DynamicResource styleAddButton}" Margin="30,0,0,0" HorizontalAlignment="Left"/>
+
+                    <Grid Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,30,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <!-- Button prev and next month -->
+                        <Image Name="imgMonthGoPrev" Grid.Column="0" Height="30" Style="{DynamicResource styleImgPrevious}" MouseLeftButtonUp="imgMonthGoPrev_MouseLeftButtonUp"/>
+                        <TextBlock Name="txtCurrentDate" Grid.Column="1" MinWidth="150" Text="March 2009" FontSize="17" FontWeight="Bold" FontFamily="Arial" VerticalAlignment="Center" Foreground="{DynamicResource clrBlueWhite}" Margin="25,0" HorizontalAlignment="Center" TextAlignment="Center"/>
+                        <Image Name="imgMonthGoNext" Grid.Column="2" Height="30" Style="{DynamicResource styleImgNext}" MouseLeftButtonUp="imgMonthGoNext_MouseLeftButtonUp"/>
+                    </Grid>
+                </Grid>
+            </Border>
+            
+
+            <!-- Header Calendar -->
+            <Border Grid.Row="1" BorderThickness="0,3" BorderBrush="Black" CornerRadius="5,5,0,0" Background="{DynamicResource clrDarkestBlue}">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="{DynamicResource timetable.monday}" Style="{DynamicResource styleCalendarTextHeader}"></TextBlock>
+                    <TextBlock Grid.Column="1" Text="{DynamicResource timetable.tuesday}" Style="{DynamicResource styleCalendarTextHeader}"></TextBlock>
+                    <TextBlock Grid.Column="2" Text="{DynamicResource timetable.wednesday}" Style="{DynamicResource styleCalendarTextHeader}"></TextBlock>
+                    <TextBlock Grid.Column="3" Text="{DynamicResource timetable.thursday}" Style="{DynamicResource styleCalendarTextHeader}"></TextBlock>
+                    <TextBlock Grid.Column="4" Text="{DynamicResource timetable.friday}" Style="{DynamicResource styleCalendarTextHeader}"></TextBlock>
+                    <TextBlock Grid.Column="5" Text="{DynamicResource timetable.saturday}" Style="{DynamicResource styleCalendarTextHeader}"></TextBlock>
+                    <TextBlock Grid.Column="6" Text="{DynamicResource timetable.sunday}" Style="{DynamicResource styleCalendarTextHeader}"></TextBlock>
+                </Grid>
+            </Border>
+            
+            <!-- Calendar Months -->
+            <Border Grid.Row="2" BorderThickness="2,0,2,3" BorderBrush="Black" CornerRadius="0,0,5,5" Background="{DynamicResource clrLightBlue}">
+                <Grid Name="gridMonthCalendar">
+                    <Grid.RowDefinitions>
+
+                    </Grid.RowDefinitions>
+                </Grid>
+            </Border>            
+        </Grid>
+    </Border>    
+</UserControl>

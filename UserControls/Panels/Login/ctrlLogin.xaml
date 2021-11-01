@@ -1,0 +1,125 @@
+﻿<UserControl x:Class="ctrlLogin"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProjectAcademy"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <!-- Style TextBlock Login -->
+        <Style x:Key="styleLoginTextBlock">
+            <Setter Property="TextBlock.FontSize" Value="14" />
+            <Setter Property="TextBlock.FontWeight" Value="Bold" />
+            <Setter Property="TextBlock.HorizontalAlignment" Value="Right" />
+            <Setter Property="TextBlock.Margin" Value="5,10,5,5" />
+        </Style>
+
+        <!-- Style TextBox Login -->
+        <Style x:Key="styleLoginTextBox">
+            <Setter Property="TextBox.FontSize" Value="12" />
+            <Setter Property="TextBox.Background" Value="{DynamicResource clrBlueWhite}" />
+            <Setter Property="TextBox.HorizontalAlignment" Value="Left" />
+            <Setter Property="TextBox.Width" Value="200" />
+            <Setter Property="TextBox.Margin" Value="5,10,5,5" />
+            <Setter Property="TextBox.MaxLength" Value="20" />
+            <Setter Property="PasswordBox.MaxLength" Value="20" />
+        </Style>
+
+        <!-- Style Label Error -->
+        <Style x:Key="styleErrorLabel">
+            <Setter Property="TextBlock.FontSize" Value="14" />
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrBlueWhite}" />
+            <Setter Property="Panel.Margin" Value="2" />
+            <Setter Property="Border.Padding" Value="5" />
+            <Setter Property="Border.MinWidth" Value="250" />
+            <Setter Property="Border.CornerRadius" Value="2,2,2,2" />
+            <Setter Property="Panel.Background" Value="{DynamicResource clrDarkBlue}" />
+            <Setter Property="Border.BorderBrush" Value="{DynamicResource clrBlueBlack}" />
+            <Setter Property="Border.BorderThickness" Value="5" />
+        </Style>
+
+        <!-- Style Login Button -->
+        <Style x:Key="styleLoginButton" TargetType="Button" BasedOn="{StaticResource styleBasicButton}">
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+            <Setter Property="MaxWidth" Value="160" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="Button" BorderThickness="1" BorderBrush="{DynamicResource clrDarkestBlue}" CornerRadius="5" Padding="5,5,5,5">
+                            <Grid HorizontalAlignment="Stretch">
+                                <Image HorizontalAlignment="Left" Name="img" Source="../../../Images/LoginPanel/login_dark.png" Width="20" />
+                                <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0"/>
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <!-- Button IsEnabled -->
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Button" Property="Opacity" Value="0.5"/>
+                            </Trigger>
+
+                            <!-- Button Pressed -->
+                            <Trigger Property="IsPressed" Value="False">
+                                <Setter TargetName="Button" Property="Background" Value="{DynamicResource grdntHoverTabBackground}"/>
+                            </Trigger>
+
+                            <!-- Button Mouse Over -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Button" Property="Background" Value="{DynamicResource grdntUnselectedTabBackground}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource clrBlueWhite}" />
+                                <Setter Property="Image.Source" TargetName="img" Value="../../../Images/LoginPanel/login_light.png" />
+                                <Setter Property="FontWeight" Value="Normal"/>
+                                <Setter TargetName="Button" Property="BorderThickness" Value="1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Name="pnlLogin">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0,20,0,20">
+            <!-- Title Control -->
+            <TextBlock Name="lblTitle" Text="{DynamicResource login.title}" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Margin="0,15,0,0"/>
+            <TextBlock Name="lbl" Text="{DynamicResource login.enter_message}" HorizontalAlignment="Center" FontSize="15" Margin="0,0,0,15"/>
+
+            <!-- Insert User and pin Form -->
+            <Grid Name="gridInsertUser" HorizontalAlignment="Center">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!-- Field: Name -->
+                <TextBlock Grid.Row="1" Grid.Column="0" Name="lblInsertName" Text="{DynamicResource login.username}" Style="{DynamicResource styleLoginTextBlock}" />
+                <TextBox Grid.Row="1" Grid.Column="1" Name="txtInsertName" Style="{DynamicResource styleLoginTextBox}" MaxLength="15"/>
+
+                <!-- Field: Password -->
+                <TextBlock Grid.Row="2" Grid.Column="0" Name="lblInsertPass" Text="{DynamicResource login.password}" Style="{DynamicResource styleLoginTextBlock}"/>
+                <PasswordBox Grid.Row="2" Grid.Column="1" Name="txtInsertPass" Style="{DynamicResource styleLoginTextBox}" MaxLength="15"/>
+
+                <!-- Label: Error Login -->
+                <Border Name="lblError" Grid.Row="0" Grid.ColumnSpan="2" Style="{DynamicResource styleErrorLabel}" Visibility="Collapsed">
+                    <TextBlock Text="{DynamicResource login.errorLogin}" HorizontalAlignment="Center" />
+                </Border>
+
+                <!-- Button: Login -->
+                <Button Name="btnLogin" Grid.Row="3" Grid.ColumnSpan="2" Content="{DynamicResource login.button}" Padding="10" Click="btnLogin_Click" Style="{DynamicResource styleLoginButton}" HorizontalAlignment="Right"
+                        Margin="0,10,5,0"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

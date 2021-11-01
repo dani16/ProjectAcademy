@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="ctrlNewExistingPersonStudent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008">
+    <Grid HorizontalAlignment="Stretch">
+        <Grid Margin="75,5,75,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Search for existing Person -->
+            <Grid Grid.Row="0" >
+                <Border Grid.Row="1" Name="Button" Style="{DynamicResource styleBorderSearcher}" MaxHeight="750">
+                    <Grid HorizontalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0" Orientation="Vertical">
+                            <!-- Title Search Person -->
+                            <TextBlock Text="{DynamicResource search.title_person}" HorizontalAlignment="Center" Margin="0,5,0,0" FontWeight="SemiBold" Foreground="{DynamicResource clrDarkestBlue}" Style="{DynamicResource styleTextBlocksForms}"/>
+
+                            <!-- TextBox Search Student -->
+                            <StackPanel Orientation="Horizontal">
+                                <Image Name="imgSearch" Source="../../../Images/Basic/search_dark.png" Width="15" />
+                                <TextBox Name="txtBxSearchStudent" VerticalAlignment="Center" Margin="10,0,0,0" MaxLength="500" Style="{DynamicResource styleTextBoxForms}"/>
+                            </StackPanel>
+
+                            <!-- Message: No results found -->
+                            <TextBlock Name="txtMessageSearch" Text="{DynamicResource search.message}" Style="{DynamicResource styleTextBlocksSearchMessage}" Margin="0,0,0,5"
+                                       Visibility="Hidden"/>
+                        </StackPanel>
+
+                        <!-- ListBox Deleted People -->
+                        <ListBox Name="lstBxExistingPeople" Grid.Row="1" Margin="0,0,0,10" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                 Background="{DynamicResource clrBlueWhite}" MinHeight="200" MaxHeight="200" MaxWidth="250"
+                                 Style="{DynamicResource styleListBoxPerson}" ItemContainerStyle="{DynamicResource styleListBoxItemsPerson}"/>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <!-- Create Student -->
+            <Border  Grid.Row="1" Style="{DynamicResource styleBorderSearcher}" Margin="0,10">
+                <Grid Name="gridNewStudent" HorizontalAlignment="Center" Margin="20,15,20,15" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- PersonID Hidden -->
+                    <TextBlock x:Name="txtPersonID" Text="{Binding PersonID, Mode=TwoWay}" Visibility="Collapsed"/>
+
+                    <!-- Person Name -->
+                    <TextBlock Grid.Row="0" Grid.Column="0" x:Name="lblPersonName" Text="{DynamicResource label.person}" Style="{DynamicResource styleTextBlocksForms}"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" x:Name="txtPersonName" HorizontalAlignment="Center" Style="{DynamicResource styleTextBlocksForms}">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="Name"/>
+                                <Binding Path="Surname"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <!-- Situation -->
+                    <TextBlock Grid.Row="1" Grid.Column="0" x:Name="lblSituation" Text="{DynamicResource label.situation}" Style="{DynamicResource styleTextBlocksForms}"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtSituation" Style="{DynamicResource styleTextBoxForms}"/>
+
+                    <!-- English Level -->
+                    <TextBlock Grid.Row="2" Grid.Column="0" x:Name="lblEnglishLevel" Text="{DynamicResource label.english_level}" Style="{DynamicResource styleTextBlocksForms}"/>
+                    <ComboBox Grid.Row="2" Grid.Column="1" x:Name="cmbBxEnglishLevel" DisplayMemberPath="EnglishLevel" SelectedIndex="0" />
+
+                    <!-- Accept and Cancel Buttons  -->
+                    <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <!-- Button Add New Student -->
+                        <Button x:Name="btnCreateNewStudent" Content="{DynamicResource button.create}" Margin="0,10,0,0" Style="{DynamicResource styleAcceptButton}"/>
+
+                        <!-- Button Cancel New Student -->
+                        <Button x:Name="btnCancelNewStudent" Content="{DynamicResource button.cancel}" Margin="20,10,0,0" Style="{DynamicResource styleCancelButton}"/>
+                    </StackPanel>
+                </Grid>
+            </Border>            
+        </Grid>
+    </Grid>
+</UserControl>

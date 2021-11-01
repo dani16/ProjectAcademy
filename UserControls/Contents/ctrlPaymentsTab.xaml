@@ -1,0 +1,193 @@
+﻿<UserControl x:Class="ctrlPaymentsTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ProjectAcademy">
+    <UserControl.Resources>
+        <!-- Person Sex to RadioButton Converter -->
+        <local:clsPersonSexToRadioButtonConverter x:Key="PersonSexRadioButtonConvert" />
+
+        <!-- Null Date to DatePicker SelectedDate -->
+        <local:clsNullDateToDatePickerConverter x:Key="NullDateToDatePickerConvert" />
+
+        <!-- Style DataGrid -->
+        <Style TargetType="DataGrid">
+            <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        </Style>
+
+        <!-- Style DataGrid HeaderColumn-->
+        <Style TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Height" Value="35" />
+            <Setter Property="BorderThickness" Value="25"/>
+            <Setter Property="SeparatorBrush" Value="{DynamicResource clrBlueBlack}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{DynamicResource clrBlueWhiteLess}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                        <Grid>
+                            <Border x:Name="columnHeaderBorder" BorderThickness="0,2"	Padding="3,0"
+                                    BorderBrush="{DynamicResource clrLightestBlue}" Background="{DynamicResource clrDarkestBlue}">
+
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style DataGrid Row -->
+        <Style TargetType="{x:Type DataGridRow}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="{DynamicResource clrLightBlue}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridRow}">
+                        <Border Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+		                        Background="{DynamicResource clrBlueWhite}">
+
+                            <DataGridCellsPresenter Background="AliceBlue" Name="itemPanel"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style DataGrid Cell -->
+        <Style TargetType="{x:Type DataGridCell}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter Name="inscription" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3,0"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Status}" Value="false">
+                    <Setter Property="Background" Value="{DynamicResource clrRed}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Border Style="{DynamicResource styleTabContent}">
+        <Grid Margin="25,20,25,20">
+            <Border Grid.Column="1" CornerRadius="3" BorderThickness="1" BorderBrush="{DynamicResource clrBlueBlack}" Margin="35,0,0,0" Background="{DynamicResource clrLightestBlue}">
+                <Grid MinWidth="550">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Title Payments -->
+                    <Border Grid.Row="0" Background="{DynamicResource clrDarkestBlue}" BorderBrush="{DynamicResource clrBlueBlack}"
+                                        BorderThickness="2" CornerRadius="1,1,0,0" HorizontalAlignment="Stretch">
+                        <TextBlock Text="{DynamicResource label.payment}" Style="{DynamicResource styleTextBorderTitle}"/>
+                    </Border>
+
+                    <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="False">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+
+                            <!-- List Payments -->
+                            <Grid Grid.Row="0" Name="gridPayments" Margin="26,9,24,11" HorizontalAlignment="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <!-- Payments Filters -->
+                                <Grid Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Center">
+                                    <Grid.RowDefinitions >
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="*" MinWidth="200"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- TeacherID -->
+                                    <TextBlock Name="txtTeacherID" Text="{Binding UserDataContext.Teacher.TeacherID, Mode=TwoWay}" Visibility="Collapsed"/>
+
+                                    <!-- Filter by Student -->
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource label.student}" Style="{DynamicResource styleTextBlocksForms}"/>
+                                    <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cmbBxSearchStudent" Style="{DynamicResource styleCmbBxPerson}"
+                                              SelectedValuePath="StudentID">
+                                    </ComboBox>
+                                    <Button Name="btnCleanFilterStudent" Grid.Row="0" Grid.Column="2" Style="{DynamicResource styleCleanButton}" Margin="10,5"></Button>
+
+                                    <!-- Filter by Date -->
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Date" Style="{DynamicResource styleTextBlocksForms}"/>
+                                    <Grid Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Stretch">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <ComboBox Name="cmbBxYear" Grid.Column="1"></ComboBox>
+                                        <ComboBox Name="cmbBxMonth" Grid.Column="0">
+                                            <ComboBoxItem Content="{DynamicResource calendar.january}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource calendar.february}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource calendar.march}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource calendar.april}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource calendar.may}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource calendar.june}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource calendar.july}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource calendar.august}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource calendar.september}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource calendar.october}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource calendar.november}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource calendar.december}"></ComboBoxItem>
+                                        </ComboBox>
+                                    </Grid>
+                                    <Button Name="btnCleanFilterDate" Grid.Row="1" Grid.Column="2" Style="{DynamicResource styleCleanButton}" Margin="10,5"></Button>
+
+                                    <!-- Filter by Status -->
+                                    <CheckBox Name="chckBxShowUnpaidPayments" Grid.Row="2" Grid.Column="1" Content="Show only unpaid payments" Margin="5,10,5,20" Style="{DynamicResource styleTextBlocksForms}"></CheckBox>
+                                </Grid>
+
+                                <!-- List Payments -->
+                                <DataGrid Name="dataGridPayments" Grid.Row="2" Grid.ColumnSpan="2" RowEditEnding="DataGrid_RowEditEnding" CanUserAddRows="False" MaxHeight="500"
+                                              AutoGenerateColumns="False" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn x:Name="studentIDColumn" MinWidth="100" Binding="{Binding Path=StudentID, Mode=TwoWay}" Header="StudentID" IsReadOnly="True" Visibility="Collapsed"/>
+                                        <DataGridTextColumn x:Name="studentNameColumn" MinWidth="200" Binding="{Binding Path=Name, Mode=TwoWay}" Header="{DynamicResource label.student}" IsReadOnly="True"/>
+                                        <DataGridTextColumn x:Name="studentDNIColumn" MinWidth="100" Binding="{Binding Path=DNI, Mode=TwoWay}" Header="{DynamicResource label.DNI}" IsReadOnly="True"/>
+                                        <DataGridTextColumn x:Name="groupIDColumn" MinWidth="100" Binding="{Binding Path=GroupID, Mode=TwoWay}" Header="GroupID" IsReadOnly="True" Visibility="Collapsed"/>
+                                        <DataGridTextColumn x:Name="groupNameColumn" MinWidth="150" Binding="{Binding Path=GroupName, Mode=TwoWay}" Header="{DynamicResource label.group}" IsReadOnly="True"/>
+                                        <DataGridTextColumn x:Name="datePaymentColumn" MinWidth="100" Binding="{Binding Path=DatePayment, Mode=TwoWay, StringFormat=dd/MM/yyyy}" Header="Date" IsReadOnly="True"/>
+                                        <DataGridTextColumn x:Name="paymentTypeColumn" MinWidth="100" Binding="{Binding Path=PaymentType, Mode=TwoWay}" Header="{DynamicResource label.payment}" IsReadOnly="True" Visibility="Collapsed"/>
+                                        <DataGridTextColumn x:Name="paymentDescriptionColumn" MinWidth="100" Binding="{Binding Path=PaymentDescription, Mode=TwoWay}" Header="{DynamicResource label.description}"/>
+                                        <DataGridTextColumn x:Name="amountColumn" MinWidth="100" Binding="{Binding Path=Amount, ConverterCulture='es-ES', StringFormat={}{0:C}, Mode=TwoWay}" Header="{DynamicResource label.amount}" IsReadOnly="True"/>
+                                        <DataGridCheckBoxColumn MinWidth="100" Binding="{Binding Path=Status, Mode=TwoWay}" Header="Paid"/>
+                                        <DataGridTemplateColumn MinWidth="50">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Name="btnDownloadReceipt" Click="btnDownloadReceipt_Click" Style="{DynamicResource styleDownloadButton}" Width="35" Height="15" IsEnabled="{Binding Status}" Margin="2,2,3,2"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="ctrlTimetableClassSmall"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:local="clr-namespace:ProjectAcademy">
+    <UserControl.Resources>
+        <!-- Group to Text Converter -->
+        <local:clsTimetableClassTextConverter x:Key="timetableClassItemTextConvert" />
+
+        <!-- Group to Background Converter -->
+        <local:clsTimetableClassBackgroundConverter x:Key="timetableClassItemBackgroundConvert" />
+    </UserControl.Resources>
+    <Border Name="brdTimetableClass" CornerRadius="2" BorderThickness="1" Background="{Binding GroupID, Converter={StaticResource timetableClassItemBackgroundConvert}}">
+        <Grid VerticalAlignment="Stretch">
+            <TextBlock Name="txtGroupID" Text="{Binding Path=GroupID}" Visibility="Collapsed"/>
+            <TextBlock Name="txtGroup" Text="{Binding GroupID, Converter={StaticResource timetableClassItemTextConvert}, ConverterParameter=GroupLevel}" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="12" Style="{DynamicResource styleTextBlocksForms}" Margin="0"/>           
+        </Grid>
+    </Border>
+</UserControl>

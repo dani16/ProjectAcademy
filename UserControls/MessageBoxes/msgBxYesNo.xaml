@@ -1,0 +1,51 @@
+﻿<Window x:Class="msgBxYesNo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="MessageBoxYesNo" HorizontalAlignment="Center" Height="150" MaxHeight="200" MaxWidth="500" Width="450"
+    WindowStyle="None" AllowsTransparency="True" ResizeMode="CanResizeWithGrip" Background="Transparent" Top="0"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!-- Style TextBlock -->
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrBlueBlack}" />
+            <Setter Property="TextBlock.FontSize" Value="14" />
+            <Setter Property="TextBlock.FontWeight" Value="Normal" />
+            <Setter Property="TextBlock.HorizontalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,7,0,7" />
+        </Style>
+
+        <!-- Style CheckBox -->
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="CheckBox.Foreground" Value="{DynamicResource clrBlueBlack}" />
+            <Setter Property="CheckBox.FontSize" Value="14" />
+            <Setter Property="CheckBox.FontWeight" Value="Normal" />
+            <Setter Property="CheckBox.HorizontalAlignment" Value="Center" />
+            <Setter Property="CheckBox.Margin" Value="0,5,0,5" />
+        </Style>        
+    </Window.Resources>
+    <Border Style="{DynamicResource styleDialog}">
+        <DockPanel Margin="10,10,10,15">
+            <!-- Title MessageBox -->
+            <TextBlock Name="txtTitleMessage" DockPanel.Dock="Top" Text="TitleMessage" FontSize="20" Foreground="{DynamicResource clrDarkestBlue}" FontWeight="SemiBold" Margin="0,0,0,5"/>
+
+            <!-- Yes an No Buttons  -->
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <!-- Button Yes -->
+                    <Button x:Name="btnYes" Content="{DynamicResource button.yes}" Margin="0,10,0,0" Style="{DynamicResource styleAcceptButton}"/>
+
+                    <!-- Button No -->
+                    <Button x:Name="btnNo" Content="{DynamicResource button.no}" Margin="20,10,0,0" Style="{DynamicResource styleCancelButton}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Message MessageBox -->
+            <StackPanel Orientation="Vertical" Margin="20,0">
+                <TextBlock Name="txtMessage" Text="Message" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="{DynamicResource clrDarkestBlue}" />
+            </StackPanel>
+        </DockPanel>
+    </Border>
+</Window>
+
+

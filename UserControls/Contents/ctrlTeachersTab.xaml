@@ -1,0 +1,296 @@
+﻿<UserControl x:Class="ctrlTeachersTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProjectAcademy">
+    <UserControl.Resources>
+        <!-- Configuration Visibility or Hidden Converter -->
+        <local:clsConfigurationVisibilityConverter x:Key="ConfigurationVisibleConvert" />
+
+        <!-- Person Sex to RadioButton Converter -->
+        <local:clsPersonSexToRadioButtonConverter x:Key="PersonSexRadioButtonConvert" />
+
+        <!-- Null Date to Text Converter -->
+        <local:clsNullDateToTextConverter x:Key="NullDateToTextConvert" />
+
+        <!-- Null Date to DatePicker SelectedDate -->
+        <local:clsNullDateToDatePickerConverter x:Key="NullDateToDatePickerConvert" />
+    </UserControl.Resources>
+    <Border Style="{DynamicResource styleTabContent}">
+        <Grid Margin="25,20,25,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Left Bar-->
+                <Expander Grid.Column="0" Style="{DynamicResource styleExpanderList}" IsExpanded="true">
+                    <Grid Grid.Column="0" MinWidth="300">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Button New Teacher -->
+                        <Button Name="btnNewTeacher" Grid.Row="0" Content="{DynamicResource button.add_new_teachert}" Style="{DynamicResource styleAddButton}" Margin="0,0,0,15">
+                            <Button.Visibility>
+                                <MultiBinding Converter="{StaticResource ConfigurationVisibleConvert}">
+                                    <Binding Path="UserDataContext.User.Type"/>
+                                    <Binding Path="Configuration.AllowNewTeachers"/>
+                                </MultiBinding>
+                            </Button.Visibility>
+                        </Button>
+
+                        <!-- ListBox Teachers -->
+                        <Border Grid.Row="1" Name="Button" BorderThickness="2" BorderBrush="{DynamicResource clrBlueWhite}" CornerRadius="10,10,10,10" Padding="15,0,15,0" Background="{DynamicResource clrLightBlue}" 
+                                MaxHeight="{Binding ElementName=stckPnlTeacherInformation, Path=ActualHeight}">
+                            <Grid HorizontalAlignment="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Row="0" Orientation="Vertical">
+                                    <!-- Title Search Teacher -->
+                                    <TextBlock Text="{DynamicResource search.title_teacher}" HorizontalAlignment="Center" Margin="0,5,0,0" FontWeight="SemiBold" Foreground="{DynamicResource clrDarkestBlue}" Style="{DynamicResource styleTextBlocksForms}"/>
+
+                                    <!-- TextBox Search Teacher -->
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Name="imgSearch" Source="../../Images/Basic/search_dark.png" Width="15" />
+                                        <TextBox Name="txtBxSearchTeacher" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                    </StackPanel>
+
+                                    <!-- Message: No results found -->
+                                    <TextBlock Name="txtMessageSearch" Margin="0,0,0,0" Text="{DynamicResource search.message}" Style="{DynamicResource styleTextBlocksSearchMessage}" 
+                                               Visibility="Hidden"/>
+                                </StackPanel>
+
+                                <!-- ListBox Teacher -->
+                                <ListBox Name="lstBxTeachers" Grid.Row="1" Margin="0,10,0,15" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                         MinWidth="265" Background="{DynamicResource clrBlueWhite}" SelectedIndex="0" VerticalAlignment="Stretch"
+                                         Style="{DynamicResource styleListBoxStudent}" ItemContainerStyle="{DynamicResource styleListBoxItemsStudent}"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Expander>
+
+                <!-- Right Content  -->
+                <Border Grid.Column="1" CornerRadius="3" BorderThickness="1" BorderBrush="{DynamicResource clrBlueBlack}" Margin="10,0,0,0" Background="{DynamicResource clrLightestBlue}">
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Title Teacher Information -->
+                        <Border Grid.Row="0" Background="{DynamicResource clrDarkestBlue}" BorderBrush="{DynamicResource clrBlueBlack}"
+                                        BorderThickness="2" CornerRadius="1,1,0,0" HorizontalAlignment="Stretch">
+                            <TextBlock Text="{DynamicResource label.teacher_information}" Style="{DynamicResource styleTextBorderTitle}"/>
+                        </Border>
+
+                        <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="False">
+                            <StackPanel>
+                                <!-- Grid Teacher Information -->
+                                <Grid Name="gridTeacherInformation" HorizontalAlignment="Center" Margin="25,10,25,10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Photo Teacher -->
+                                    <Border Grid.Row="0" Grid.Column="0"  Margin="0,0,25,0">
+                                        <StackPanel  VerticalAlignment="Top" HorizontalAlignment="Right">
+                                            <Border BorderBrush="{DynamicResource clrBlueWhite}" BorderThickness="3" HorizontalAlignment="Left" Background="{DynamicResource clrDarkBlue}">
+                                                <Image Name="imgTeacherPhoto" Source="{Binding Photo.Source, Mode=TwoWay}" MinWidth="140" MaxWidth="150" MinHeight="150" MaxHeight="150"/>
+                                            </Border>
+
+                                            <Grid>
+                                                <Button Name="btnChangeImageTeacher" Margin="10,5,0,0" Style="{DynamicResource styleChangeImageButton}" IsEnabled="{Binding ElementName=btnSaveChangesTeachers, Path=IsEnabled}" 
+                                                    HorizontalAlignment="Left"/>
+                                                <Button Name="btnDeleteImageTeacher" Margin="0,5,10,0" Style="{DynamicResource styleDeleteImageButton}" IsEnabled="{Binding ElementName=btnSaveChangesTeachers, Path=IsEnabled}" 
+                                                    HorizontalAlignment="Right"/>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Border>
+
+                                    <!-- Name, Surname, DNI, BirthDate, Sex, Address -->
+                                    <Grid Grid.Row="0" Grid.Column="1" Margin="25,0,0,0">
+                                        <Grid.RowDefinitions >
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition MinWidth="100" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- TeacherID Hidden -->
+                                        <TextBlock Grid.Row="0" Grid.Column="0" x:Name="txtTeacherID" Text="{Binding TeacherID, Mode=TwoWay}" Visibility="Collapsed" Style="{DynamicResource styleTextBlocksForms}"/>
+
+                                        <!-- Name -->
+                                        <TextBlock Grid.Row="1" Grid.Column="0" x:Name="lblName" Text="{DynamicResource label.name}" Style="{DynamicResource styleTextBlocksForms}"/>
+                                        <TextBox Grid.Row="1" Text="{Binding Name, Mode=TwoWay}" Grid.Column="1" x:Name="txtName"  IsEnabled="{Binding ElementName=btnSaveChangesTeachers, Path=IsEnabled}" MaxLength="500"/>
+                                        <TextBlock Name="lblErrorName" Style="{DynamicResource styleError}" Margin="0,0,0,3" Grid.Row="2" Grid.Column="1" 
+                                        Text="{DynamicResource error.name}"/>
+
+                                        <!-- Surname -->
+                                        <TextBlock Grid.Row="3" Grid.Column="0" x:Name="lblSurname" Text="{DynamicResource label.surname}" Style="{DynamicResource styleTextBlocksForms}"/>
+                                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtSurname" Text="{Binding Surname, Mode=TwoWay}" IsEnabled="{Binding ElementName=btnSaveChangesTeachers, Path=IsEnabled}" MaxLength="500"/>
+                                        <TextBlock Name="lblErrorSurname" Style="{DynamicResource styleError}" Margin="0,0,0,3" Grid.Row="4" Grid.Column="1" 
+                                        Text="{DynamicResource error.surname}"/>
+
+                                        <!-- DNI -->
+                                        <TextBlock Grid.Row="5" x:Name="DNI" Text="{Binding DNI, Mode=OneTime}" Visibility="Collapsed"/>
+                                        <TextBlock Grid.Row="5" Grid.Column="0" x:Name="lblDNI" Text="{DynamicResource label.DNI}" Style="{DynamicResource styleTextBlocksForms}"/>
+                                        <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtDNI" Text="{Binding DNI, Mode=TwoWay}" IsEnabled="{Binding ElementName=btnSaveChangesTeachers, Path=IsEnabled}" MaxLength="9"/>
+                                        <TextBlock Name="lblErrorDNI" Style="{DynamicResource styleError}" Margin="0,0,0,3" Grid.Row="6" Grid.Column="1"/>
+
+                                        <!-- Birth date -->
+                                        <TextBlock Grid.Row="7" Grid.Column="0" x:Name="lblBirthDate" Text="{DynamicResource label.birth_date}" Style="{DynamicResource styleTextBlocksForms}"/>
+                                        <DatePicker Grid.Row="7" Grid.Column="1" x:Name="txtBirthDate" Text="{Binding BirthDate, Converter={StaticResource NullDateToDatePickerConvert}, StringFormat='dd/MM/yyy', Mode=TwoWay}" 
+                                                    IsEnabled="{Binding ElementName=btnSaveChangesTeachers, Path=IsEnabled}" Validation.ErrorTemplate="{x:Null}"/>
+                                        <TextBlock Name="lblErrorDateBirth" Style="{DynamicResource styleError}" Margin="0,0,0,3" Grid.Row="8" Grid.Column="1" 
+                                        Text="{DynamicResource error.date}"/>
+
+                                        <!-- Sex -->
+                                        <TextBlock Grid.Row="9" Grid.Column="0" x:Name="lblSex" Text="{DynamicResource label.sex}" Style="{DynamicResource styleTextBlocksForms}"/>
+                                        <StackPanel Grid.Row="9" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" IsEnabled="{Binding ElementName=btnSaveChangesTeachers, Path=IsEnabled}">
+                                            <RadioButton x:Name="rdBtnSexMale" GroupName="Sex" Content="{DynamicResource label.sex_male}" Margin="0,0,0,0" IsChecked="{Binding Sex, ConverterParameter=Male, Converter={StaticResource PersonSexRadioButtonConvert}, Mode=TwoWay}" />
+                                            <RadioButton x:Name="rdBtnSexFemale" GroupName="Sex" Content="{DynamicResource label.sex_female}" Margin="25,0,0,0" IsChecked="{Binding Sex, ConverterParameter=Female, Converter={StaticResource PersonSexRadioButtonConvert}, Mode=TwoWay}"/>
+                                        </StackPanel>
+
+                                        <!-- Address -->
+                                        <TextBlock Grid.Row="10" Grid.Column="0" x:Name="lblAddress" Text="{DynamicResource label.address}" Style="{DynamicResource styleTextBlocksForms}"/>
+                                        <TextBox Grid.Row="10" Grid.Column="1" x:Name="txtAddress" Text="{Binding Address, Mode=TwoWay}" IsEnabled="{Binding ElementName=btnSaveChangesTeachers, Path=IsEnabled}" MaxLength="500"/>
+                                    </Grid>
+
+                                    <!-- City, PostalCode -->
+                                    <Grid Grid.Row="1" Grid.Column="0" Margin="0,0,25,0">
+                                        <Grid.RowDefinitions >
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition MinWidth="100" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- City -->
+                                        <TextBlock Grid.Row="0" Grid.Column="0" x:Name="lblCity" Text="{DynamicResource label.city}" Style="{DynamicResource styleTextBlocksForms}"/>
+                                        <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtCity" Text="{Binding City, Mode=TwoWay}" IsEnabled="{Binding ElementName=btnSaveChangesTeachers, Path=IsEnabled}" MaxLength="500"/>
+
+                                        <!-- Postal Code -->
+                                        <TextBlock Grid.Row="1" Grid.Column="0" x:Name="lblPostalCode" Text="{DynamicResource label.postal_code}" Style="{DynamicResource styleTextBlocksForms}"/>
+                                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtPostalCode" Text="{Binding PostalCode, Mode=TwoWay}" IsEnabled="{Binding ElementName=btnSaveChangesTeachers, Path=IsEnabled}" MaxLength="5"/>
+                                    </Grid>
+
+                                    <!-- Telephone, Email -->
+                                    <Grid Grid.Row="1" Grid.Column="1" Margin="25,0,0,0">
+                                        <Grid.RowDefinitions >
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition MinWidth="100" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Telephone -->
+                                        <TextBlock Grid.Row="0" Grid.Column="0" x:Name="lblTelephone" Text="{DynamicResource label.telephone}" Style="{DynamicResource styleTextBlocksForms}"/>
+                                        <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTelephone" Text="{Binding Telephone, Mode=TwoWay}" IsEnabled="{Binding ElementName=btnSaveChangesTeachers, Path=IsEnabled}" MaxLength="9"/>
+                                        <TextBlock Name="lblErrorTelephone" Style="{DynamicResource styleError}" Grid.Row="1" Grid.Column="1" 
+                                         Text="{DynamicResource error.telephone}" />
+
+                                        <!-- Email -->
+                                        <TextBlock Grid.Row="2" Grid.Column="0" x:Name="lblEmail" Text="{DynamicResource label.email}" Style="{DynamicResource styleTextBlocksForms}"/>
+                                        <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtEmail" Text="{Binding Email, Mode=TwoWay}" IsEnabled="{Binding ElementName=btnSaveChangesTeachers, Path=IsEnabled}" MaxLength="500"/>
+                                        <TextBlock Name="lblErrorEmail" Style="{DynamicResource styleError}" Grid.Row="3" Grid.Column="1" 
+                                        Text="{DynamicResource error.mail}"/>
+                                    </Grid>
+                                </Grid>
+
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,25">
+                                    <StackPanel.Visibility>
+                                        <MultiBinding Converter="{StaticResource ConfigurationVisibleConvert}">
+                                            <Binding Path="UserDataContext.User.Type"/>
+                                            <Binding Path="Configuration.AllowNewTeachers"/>
+                                        </MultiBinding>
+                                    </StackPanel.Visibility>
+                                    <!-- Button Save Changes -->
+                                    <Button Name="btnSaveChangesTeachers" IsEnabled="False" Grid.Row="1" Content="{DynamicResource button.save}" Margin="0,3,0,3" Style="{DynamicResource styleSaveButton}"/>
+
+                                    <!-- Button Edit -->
+                                    <Button Name="btnEditTeacher" Content="{DynamicResource button.edit}" Style="{DynamicResource styleEditButton}" Margin="5,3,0,3"/>
+
+                                    <!-- Button Cancel -->
+                                    <Button Name="btnCancelEditTeacher" Content="{DynamicResource button.cancel}" Style="{DynamicResource styleCancelEditButton}" Margin="5,3,0,3" Visibility="Collapsed"/>
+
+                                    <!-- Button Delete -->
+                                    <Button Name="btnDeleteTeacher" Content="{DynamicResource button.delete}" Style="{DynamicResource styleDeleteButton}" Margin="5,3,0,3">
+                                        <Button.Visibility>
+                                            <MultiBinding Converter="{StaticResource ConfigurationVisibleConvert}">
+                                                <Binding Path="UserDataContext.User.Type"/>
+                                                <Binding Path="Configuration.AllowDeleteTeachers"/>
+                                            </MultiBinding>
+                                        </Button.Visibility>
+                                    </Button>
+                                </StackPanel>
+
+                                <!-- List Groups -->
+                                <Expander Name="expanderStudents" Header="{DynamicResource label.list_groups}" IsExpanded="True" Style="{DynamicResource styleExpander}" Margin="20,0,20,15">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Buttons Actions Groups -->
+                                        <StackPanel Grid.Column="0" Orientation="Vertical">
+                                            <Button Name="btnAddGroup" Content="{DynamicResource button.add_group}" Style="{DynamicResource styleAddButton}" Margin="0,10,0,0">
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource ConfigurationVisibleConvert}">
+                                                        <Binding Path="UserDataContext.User.Type"/>
+                                                        <Binding Path="Configuration.AllowEditTeachers"/>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                            </Button>
+                                        </StackPanel>
+
+                                        <!-- List Groups -->
+                                        <ListBox Grid.Column="1" Name="lstBxGroups" Grid.Row="0" Margin="20,10,20,15" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                         Background="{DynamicResource clrBlueWhite}"  MinHeight="120" MaxHeight="300" ItemsSource="{Binding Students, Mode=TwoWay}" Button.Click="listGroupsClick"
+                                         Style="{DynamicResource styleListBoxStudent}" ItemContainerStyle="{DynamicResource styleListBoxGroupsWithButtons}"/>
+                                    </Grid>
+                                </Expander>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,236 @@
+﻿<UserControl x:Class="ctrlSettingsTabControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProjectAcademy"  
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <!-- Configuration Visibility or Hidden Converter -->
+        <local:clsConfigurationVisibilityConverter x:Key="ConfigurationVisibleConvert" />
+
+        <!-- Style TabControl -->
+        <Style TargetType="TabControl">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Border.BorderThickness" Value="0" />
+            <Setter Property="Margin" Value="20,10,20,15" />
+            <Setter Property="TabControl.TabStripPlacement" Value="Left" />
+            <Setter Property="Background" Value="{DynamicResource clrLightestBlue}"/>
+        </Style>
+
+        <!-- Style TabControl TabItem -->
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <StackPanel>
+                            <Border Name="Border" BorderThickness="2" BorderBrush="{DynamicResource clrLightBlue}" CornerRadius="10,0,0,10" 
+                                    Background="{DynamicResource clrLightestBlue}" Margin="0,0,0,0" MinHeight="85">
+                                <StackPanel Orientation="Vertical" Style="{DynamicResource styleTabHeaderText}" HorizontalAlignment="Stretch">
+                                    <Image Name="imageHeader" Width="40" Margin="0,5,0,0"></Image>
+                                    <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                        ContentSource="Header" Margin="10,0,10,5"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+
+                        <ControlTemplate.Triggers>
+                            <!-- Tab Profile -->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True" />
+                                    <Condition Property="Name" Value="tabProfile" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="../../Images/SettingsTabItems/profile_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntSelectedSettingsTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="Name" Value="tabProfile" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="../../Images/SettingsTabItems/profile_light.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrLightestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntUnselectedSettingsTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="Name" Value="tabProfile" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="../../Images/SettingsTabItems/profile_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntHoverSettingsTabBackground}" />
+                            </MultiTrigger>
+
+                            <!-- Tab Preferences -->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True" />
+                                    <Condition Property="Name" Value="tabPreferences" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="../../Images/SettingsTabItems/preferences_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntSelectedSettingsTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="Name" Value="tabPreferences" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="../../Images/SettingsTabItems/preferences_light.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrLightestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntUnselectedSettingsTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="Name" Value="tabPreferences" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="../../Images/SettingsTabItems/preferences_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntHoverSettingsTabBackground}" />
+                            </MultiTrigger>
+
+                            <!-- Tab Language -->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True" />
+                                    <Condition Property="Name" Value="tabLanguage" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="../../Images/SettingsTabItems/language_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntSelectedSettingsTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="Name" Value="tabLanguage" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="../../Images/SettingsTabItems/language_light.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrLightestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntUnselectedSettingsTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="Name" Value="tabLanguage" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="../../Images/SettingsTabItems/language_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntHoverSettingsTabBackground}" />
+                            </MultiTrigger>
+
+                            <!-- Tab Advanced -->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True" />
+                                    <Condition Property="Name" Value="tabAdvanced" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="../../Images/SettingsTabItems/advanced_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntSelectedSettingsTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="Name" Value="tabAdvanced" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="../../Images/SettingsTabItems/advanced_light.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrLightestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntUnselectedSettingsTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="Header" Value="Advanced" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="../../Images/SettingsTabItems/advanced_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntHoverSettingsTabBackground}" />
+                            </MultiTrigger>
+
+                            <!-- Tab Users Settings-->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True" />
+                                    <Condition Property="Name" Value="tabUsers" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="../../Images/SettingsTabItems/users_settings_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntSelectedSettingsTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="Name" Value="tabUsers" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="../../Images/SettingsTabItems/users_settings_light.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrLightestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntUnselectedSettingsTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="Name" Value="tabUsers" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="../../Images/SettingsTabItems/users_settings_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntHoverSettingsTabBackground}" />
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <TabControl Name="settingTabControl" Padding="0" Margin="15,0,15,0" Background="Transparent">
+        <TabItem Header="{DynamicResource label.profile}" Name="tabProfile">
+            <local:ctrlProfileSettingsTab/>
+        </TabItem>
+
+        <TabItem Header="{DynamicResource label.preferences}" Name="tabPreferences">
+            <local:ctrlPreferencesSettingsTab/>
+        </TabItem>
+
+        <TabItem Header="{DynamicResource label.language}" Name="tabLanguage">
+            <local:ctrlLanguageSettingsTab/>
+        </TabItem>
+
+        <TabItem Header="{DynamicResource label.users}" Name="tabUsers">
+            <TabItem.Visibility>
+                <MultiBinding Converter="{StaticResource ConfigurationVisibleConvert}" ConverterParameter="Admin">
+                    <Binding Path="UserDataContext.User.Type" />
+                </MultiBinding>
+            </TabItem.Visibility>
+            <local:ctrlUsersSettings/>
+        </TabItem>
+
+        <TabItem Header="{DynamicResource label.advanced}" Name="tabAdvanced">
+            <TabItem.Visibility>
+                <MultiBinding Converter="{StaticResource ConfigurationVisibleConvert}" ConverterParameter="Admin">
+                    <Binding Path="UserDataContext.User.Type" />
+                </MultiBinding>
+            </TabItem.Visibility>
+            <local:ctrlAdvancedSettingsTab/>
+        </TabItem>
+    </TabControl>
+</UserControl>

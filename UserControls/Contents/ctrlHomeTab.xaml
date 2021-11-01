@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="ctrlHomeTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProjectAcademy"
+             MinHeight="500" MinWidth="700" Margin="0">
+    <Border Style="{DynamicResource styleTabContent}">
+        <Grid Margin="25,20,25,20">
+            <Border Grid.Column="1" CornerRadius="3" BorderThickness="1" BorderBrush="{DynamicResource clrBlueBlack}" Margin="0,0,0,0" Background="{DynamicResource clrLightestBlue}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- TeacherID -->
+                    <TextBlock Name="txtTeacherID" Text="{Binding UserDataContext.Teacher.TeacherID, Mode=TwoWay}" Visibility="Collapsed"/>
+                    
+                    <!-- Title Home -->
+                    <Border Grid.Row="0" Background="{DynamicResource clrDarkestBlue}" BorderBrush="{DynamicResource clrBlueBlack}"
+                                        BorderThickness="2" CornerRadius="1,1,0,0" HorizontalAlignment="Stretch">
+                        <TextBlock Text="{DynamicResource label.notifications}" Style="{DynamicResource styleTextBorderTitle}"/>
+                    </Border>
+
+                    <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="False">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+
+                            <!-- List Assessment -->
+                            <Grid Grid.Row="0" Name="gridAssessment" Margin="25,10,25,10" HorizontalAlignment="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <!-- Button New Notificacion -->
+                                <Button Name="btnNewNotification" Grid.Row="0" Content="{DynamicResource button.add_notification}" Style="{DynamicResource styleAddButton}" Margin="0,10,0,5"/>
+
+                                <!-- ListBox Notifications -->
+                                <ListBox Name="lstBxNotifications" Grid.Row="1" Margin="10,10,10,15" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                                         MinWidth="465" Background="{DynamicResource clrBlueWhite}" SelectedIndex="0" MaxHeight="450" VerticalAlignment="Top" MinHeight="300"
+                                         Style="{DynamicResource styleListBoxNotifications}" ItemContainerStyle="{DynamicResource styleListBoxItemsNotifications}"
+                                         Button.Click="lstBxNotifications_Click"/>
+                            </Grid>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

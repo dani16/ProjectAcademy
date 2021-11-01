@@ -1,0 +1,25 @@
+﻿<Window x:Class="dlgNewGroup"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ProjectAcademy"
+    Title="Create new group" HorizontalAlignment="Center" MinWidth="700" Width="700" MaxWidth="800" Height="370"
+    WindowStyle="None" AllowsTransparency="True" ResizeMode="CanResizeWithGrip" Background="Transparent" Top="0"
+        WindowStartupLocation="CenterScreen">
+    <Border Style="{DynamicResource styleDialog}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="False">
+            <Grid Margin="75,20,75,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- Title New Group Control -->
+                <TextBlock Text="{DynamicResource label.create_new_group}" Grid.Row="0" FontSize="30" HorizontalAlignment="Center" Foreground="{DynamicResource clrDarkestBlue}" FontWeight="SemiBold" Margin="0,0,0,20"/>
+
+                <StackPanel Name="stckPnlMenuNewGroup" Grid.Row="1">
+                    <local:ctrlNewGroup></local:ctrlNewGroup>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Border>
+</Window>

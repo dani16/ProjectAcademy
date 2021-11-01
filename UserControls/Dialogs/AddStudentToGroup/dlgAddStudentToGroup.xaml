@@ -1,0 +1,107 @@
+﻿<Window x:Class="dlgAddStudentToGroup"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Add Student to Group" HorizontalAlignment="Center" MinWidth="300" Width="600" MaxWidth="600" Height="520"
+    WindowStyle="None" AllowsTransparency="True" ResizeMode="CanResizeWithGrip" Background="Transparent" Top="0"
+        WindowStartupLocation="CenterScreen">
+    <Border Style="{DynamicResource styleDialog}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="False">
+            <Grid Margin="75,20,75,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- Title Add Student to Group -->
+                <TextBlock Text="Add Student to Group" Grid.Row="0" Style="{DynamicResource styleDialogTitle}" Margin="0,0,0,20"/>
+
+                <!-- Select Student -->
+                <Grid  HorizontalAlignment="Center" Margin="0,55,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- GroupID -->
+                    <TextBox Grid.Row="0" Grid.Column="0" x:Name="txtGroupID" Visibility="Collapsed" />
+
+                    <!-- Search for Student -->
+                    <Grid Grid.Row="0" >
+                        <Border Name="Button" BorderThickness="2" BorderBrush="{DynamicResource clrBlueBlack}" CornerRadius="10,10,10,10" Padding="15,0,15,0" Background="{DynamicResource clrLightestBlue}" MaxHeight="750">
+                            <Grid HorizontalAlignment="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Row="0" Orientation="Vertical">
+                                    <!-- Title Search Person -->
+                                    <TextBlock Text="{DynamicResource search.title_student}" HorizontalAlignment="Center" Margin="0,5,0,0" FontWeight="SemiBold" Foreground="{DynamicResource clrDarkestBlue}" Style="{DynamicResource styleTextBlocksForms}"/>
+
+                                    <!-- TextBox Search Student -->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Name="imgSearch" Source="../../../Images/Basic/search_dark.png" Width="15" />
+                                        <TextBox Name="txtBxSearchStudent" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                    </StackPanel>
+
+                                    <!-- Message: No results found -->
+                                    <TextBlock Name="txtMessageSearch" Text="{DynamicResource search.message}" Style="{DynamicResource styleTextBlocksSearchMessage}" Margin="0,0,0,5"
+                                       Visibility="Hidden"/>
+                                </StackPanel>
+
+                                <!-- ListBox Student -->
+                                <ListBox Name="lstBxStudents" Grid.Row="1" Margin="0,0,0,10" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                         Background="{DynamicResource clrBlueWhite}" MinHeight="200" MaxHeight="200" MaxWidth="250" 
+                                         Style="{DynamicResource styleListBoxPerson}" ItemContainerStyle="{DynamicResource styleListBoxItemsPerson}"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+
+                    <!-- Add Student -->
+                    <Border Grid.Row="1" Style="{DynamicResource styleBorderSearcher}" Margin="0,10">
+                        <Grid Name="gridAddStudent" Grid.Row="1" HorizontalAlignment="Left" Margin="20,15,20,15">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- PersonID Hidden -->
+                            <TextBlock x:Name="txtPersonID" Text="{Binding PersonID, Mode=TwoWay}" Visibility="Collapsed"/>
+
+                            <!-- Person Name -->
+                            <TextBlock Grid.Row="0" Grid.Column="0" x:Name="lblPersonName" Text="{DynamicResource label.person}" HorizontalAlignment="Left" Style="{DynamicResource styleTextBlocksForms}" Margin="0,0,5,0"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" x:Name="txtPersonName" HorizontalAlignment="Center" Style="{DynamicResource styleTextBlocksForms}">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="Name"/>
+                                        <Binding Path="Surname"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+
+                            <!-- Accept and Cancel Buttons  -->
+                            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <!-- Button Change Password -->
+                                <Button x:Name="btnAddStudent" Content="{DynamicResource button.add}" Margin="0,10,0,0" Style="{DynamicResource styleAcceptButton}"/>
+
+                                <!-- Button Cancel New Student -->
+                                <Button x:Name="btnCancelAddStudent" Content="{DynamicResource button.cancel}" Margin="20,10,0,0" Style="{DynamicResource styleCancelButton}"/>
+                            </StackPanel>
+                        </Grid>                        
+                    </Border>                    
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Border>
+</Window>

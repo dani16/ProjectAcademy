@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="ctrlTimetableClass"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:ProjectAcademy">
+    <UserControl.Resources>
+        <!-- Group to Text Converter -->
+        <local:clsTimetableClassTextConverter x:Key="timetableClassItemTextConvert" />
+
+        <!-- Group to Background Converter -->
+        <local:clsTimetableClassBackgroundConverter x:Key="timetableClassItemBackgroundConvert" />
+    </UserControl.Resources>
+    <Border Name="brdTimetableClass" CornerRadius="2" BorderThickness="1" Background="{Binding GroupID, Converter={StaticResource timetableClassItemBackgroundConvert}}">        
+        <StackPanel VerticalAlignment="Center">            
+            <TextBlock Name="txtGroupID" Text="{Binding Path=GroupID}" Visibility="Collapsed"/>
+            <TextBlock Name="txtGroup" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="12" Style="{DynamicResource styleTextBlocksForms}" MinWidth="90" TextWrapping="Wrap" Margin="0">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0} {1}">
+                        <Binding Path="GroupID" Converter="{StaticResource timetableClassItemTextConvert}" ConverterParameter="GroupLevel"/>
+                        <Binding Path="GroupID" Converter="{StaticResource timetableClassItemTextConvert}" ConverterParameter="GroupName"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <!--<TextBlock Name="txtTeacherName" Text="{Binding GroupID, Converter={StaticResource timetableClassItemTextConvert}, ConverterParameter=TeacherName}" FontSize="12" TextWrapping="Wrap" HorizontalAlignment="Center" Style="{DynamicResource styleTextBlocksForms}" Margin="0"/>-->
+        </StackPanel>
+    </Border>
+</UserControl>

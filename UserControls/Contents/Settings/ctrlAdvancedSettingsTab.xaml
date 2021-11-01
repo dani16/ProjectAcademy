@@ -1,0 +1,162 @@
+﻿<UserControl x:Class="ctrlAdvancedSettingsTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" >    
+    <Border Style="{DynamicResource styleSettingsTabContent}" >
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="False">
+            <Grid Margin="75,20,75,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Application Configuration -->
+                <StackPanel Grid.Row="0">
+                    <Expander Name="expanderConfiguration" Header="{DynamicResource label.configuration}" Style="{DynamicResource styleExpanderSettings}" IsExpanded="True">
+                        <Grid HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" Margin="25,0,20,25" >
+                                <CheckBox Margin="0,10,0,0" IsChecked="{Binding Path=Configuration.ShowHome, Mode=TwoWay}" Name="chckBxShowHome">
+                                    <TextBlock Text="{DynamicResource permissions.show_home}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.ShowStudents, Mode=TwoWay}" Name="chckBxShowStudents">
+                                    <TextBlock Text="{DynamicResource permissions.show_student}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.ShowGroups, Mode=TwoWay}" Name="chckBxShowGroups">
+                                    <TextBlock Text="{DynamicResource permissions.show_group}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.ShowTeachers, Mode=TwoWay}" Name="chckBxShowTeachers">
+                                    <TextBlock Text="{DynamicResource permissions.show_teacher}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.ShowAssessment, Mode=TwoWay}" Name="chckBxShowAssessment">
+                                    <TextBlock Text="{DynamicResource permissions.show_assessment}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" Margin="25,0,20,25">
+                                <CheckBox Margin="0,10,0,0" IsChecked="{Binding Path=Configuration.ShowMarks, Mode=TwoWay}" Name="chckBxShowMarks">
+                                    <TextBlock Text="{DynamicResource permissions.show_mark}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.ShowCalendar, Mode=TwoWay}" Name="chckBxShowCalendar">
+                                    <TextBlock Text="{DynamicResource permissions.show_calendar}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.ShowTimetable, Mode=TwoWay}" Name="chckBxShowTimetable">
+                                    <TextBlock Text="{DynamicResource permissions.show_timetable}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.ShowPayments, Mode=TwoWay}" Name="chckBxShowPayment">
+                                    <TextBlock Text="{DynamicResource permissions.show_payments}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                            </StackPanel>
+                        </Grid>
+                    </Expander>
+
+                    <!-- Permissions -->
+                    <Expander Name="expanderPermissions" Header="{DynamicResource label.permissions}" Style="{DynamicResource styleExpanderSettings}">
+                        <Grid HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Vertical" Margin="25,0,20,25" HorizontalAlignment="Center" >
+                                <CheckBox Margin="0,10,0,0" IsChecked="{Binding Path=Configuration.AllowNewStudents, Mode=TwoWay}" Name="chckBxAllowNewStudents">
+                                    <TextBlock Text="{DynamicResource permissions.create_student}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.AllowEditStudents, Mode=TwoWay}" Name="chckBxAllowEditStudents">
+                                    <TextBlock Text="{DynamicResource permissions.edit_student}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.AllowDeleteStudents, Mode=TwoWay}" Name="chckBxAllowDeleteStudents">
+                                    <TextBlock Text="{DynamicResource permissions.delete_student}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.AllowNewGroups, Mode=TwoWay}" Name="chckBxAllowNewGroups">
+                                    <TextBlock Text="{DynamicResource permissions.create_group}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.AllowEditGroups, Mode=TwoWay}" Name="chckBxAllowEditGroups">
+                                    <TextBlock  Text="{DynamicResource permissions.edit_group}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.AllowFinishGroups, Mode=TwoWay}" Name="chckBxAllowDeleteGroups">
+                                    <TextBlock Text="{DynamicResource permissions.delete_group}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.AllowNewTeachers, Mode=TwoWay}" Name="chckBxAllowNewTeachers">
+                                    <TextBlock  Text="{DynamicResource permissions.create_teacher}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.AllowEditTeachers, Mode=TwoWay}" Name="chckBxAllowEditTeachers">
+                                    <TextBlock  Text="{DynamicResource permissions.edit_teacher}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.AllowDeleteTeachers, Mode=TwoWay}" Name="chckBxAllowDeleteTeachers">
+                                    <TextBlock  Text="{DynamicResource permissions.delete_teacher}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" Orientation="Vertical" Margin="25,0,20,25">                                
+                                <CheckBox Margin="0,10,0,0" IsChecked="{Binding Path=Configuration.AllowNewAssessment, Mode=TwoWay}" Name="chckBxAllowNewAssessment">
+                                    <TextBlock  Text="{DynamicResource permissions.create_assessment}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.AllowEditAssessment, Mode=TwoWay}" Name="chckBxAllowEditAssessment">
+                                    <TextBlock  Text="{DynamicResource permissions.edit_assessment}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.AllowDeleteAssessment, Mode=TwoWay}" Name="chckBxAllowDeleteAssessment">
+                                    <TextBlock  Text="{DynamicResource permissions.delete_assessment}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}" />
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.AllowNewMarks, Mode=TwoWay}" Name="chckBxAllowNewMarks">
+                                    <TextBlock Text="{DynamicResource permissions.create_mark}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.AllowEditMarks, Mode=TwoWay}" Name="chckBxAllowEditMarks">
+                                    <TextBlock  Text="{DynamicResource permissions.edit_mark}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.AllowDeleteMarks, Mode=TwoWay}" Name="chckBxAllowDeleteMarks">
+                                    <TextBlock Text="{DynamicResource permissions.delete_mark}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.AllowNewCalendar, Mode=TwoWay}" Name="chckBxAllowNewCalendar">
+                                    <TextBlock  Text="{DynamicResource permissions.create_calendar}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.AllowEditCalendar, Mode=TwoWay}" Name="chckBxAllowEditCalendar">
+                                    <TextBlock  Text="{DynamicResource permissions.edit_calendar}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding Path=Configuration.AllowDeleteCalendar, Mode=TwoWay}" Name="chckBxAllowDeleteCalendar">
+                                    <TextBlock  Text="{DynamicResource permissions.delete_calendar}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2" Orientation="Vertical" Margin="25,0,20,25">
+                                <CheckBox IsChecked="{Binding Path=Configuration.AllowEditTimetable, Mode=TwoWay}" Name="chckBxAllowEditTimetable" Margin="0,10,0,0">
+                                    <TextBlock Text="{DynamicResource permissions.edit_timetable}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <!--<CheckBox IsChecked="{Binding Path=Configuration.AllowNewPayments, Mode=TwoWay}" Name="chckBxAllowNewPayments">
+                                    <TextBlock Text="{DynamicResource permissions.create_payment}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>-->
+                                <CheckBox IsChecked="{Binding Path=Configuration.AllowEditPayments, Mode=TwoWay}"  Name="chckBxAllowEditPayments">
+                                    <TextBlock Text="{DynamicResource permissions.create_payment}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>
+                                <!--<CheckBox IsChecked="{Binding Path=Configuration.AllowDeletePayments, Mode=TwoWay}" Name="chckBxAllowDeletePayments">
+                                    <TextBlock Text="{DynamicResource permissions.delete_payment}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                                </CheckBox>-->
+                            </StackPanel>
+                        </Grid>
+                    </Expander>
+
+                    <!-- Others -->
+                    <Expander Name="expanderOthers" Header="{DynamicResource label.others}" Style="{DynamicResource styleExpanderSettings}">
+                        <StackPanel Margin="25,0,50,25" HorizontalAlignment="Center">
+                            <CheckBox Margin="0,10,0,0" IsChecked="{Binding Path=Configuration.AllowEditPersonalData, Mode=TwoWay}" Name="chckBxAllowEditPersonalData">
+                                <TextBlock Text="{DynamicResource permissions.edit_profile}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                            </CheckBox>
+                            <CheckBox IsChecked="{Binding Path=Configuration.AllowChangePassword, Mode=TwoWay}" Name="chckBxAllowChangePassword">
+                                <TextBlock Text="{DynamicResource permissions.change_password}" Margin="15,0,0,0" Style="{DynamicResource styleTextBlocksForms}"/>
+                            </CheckBox>
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+
+                <!-- Button Save Changes -->
+                <Button  Grid.Row="1" Name="btnSaveChangesAdvancedSettings" Content="{DynamicResource button.save}" Margin="0,10,0,0" Style="{DynamicResource styleSaveButton}" Click="btnSaveChangesAdvancedSettings_Click"/>
+            </Grid>
+        </ScrollViewer>
+    </Border>
+</UserControl>

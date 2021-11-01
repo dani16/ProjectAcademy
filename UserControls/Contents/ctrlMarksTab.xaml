@@ -1,0 +1,248 @@
+﻿<UserControl x:Class="ctrlMarksTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:local="clr-namespace:ProjectAcademy"  Margin="0">
+    <UserControl.Resources>
+        <!-- Person Name Converter -->
+        <local:clsPersonNameConverter x:Key="PersonNameConverter" />
+    </UserControl.Resources>
+    <Border Style="{DynamicResource styleTabContent}">
+        <Grid Margin="25,20,25,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Left Bar-->
+                <Expander Grid.Column="0" Style="{DynamicResource styleExpanderList}" IsExpanded="true">
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- ListBox Students -->
+                        <Border Grid.Row="1" Name="Button" BorderThickness="2" BorderBrush="{DynamicResource clrBlueWhite}" CornerRadius="10,10,10,10" Padding="15,0,15,0" Background="{DynamicResource clrLightBlue}">
+                            <Grid HorizontalAlignment="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Row="0" Orientation="Vertical" Margin="0">
+                                    <!-- Title Seach Student -->
+                                    <TextBlock Text="{DynamicResource search.title_student}" HorizontalAlignment="Center" Margin="0,5,0,0" FontWeight="SemiBold" Foreground="{DynamicResource clrDarkestBlue}" Style="{DynamicResource styleTextBlocksForms}"/>
+
+                                    <!-- TextBox Search Student -->
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Name="imgSearch" Source="../../Images/Basic/search_dark.png" Width="15" />
+                                        <TextBox Name="txtBxSearchStudent" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                    </StackPanel>
+
+                                    <!-- Message: No results found -->
+                                    <TextBlock Name="txtMessageSearch" Margin="0,0,0,0" Text="{DynamicResource search.message}" Style="{DynamicResource styleTextBlocksSearchMessage}" 
+                                               Visibility="Hidden"/>
+                                </StackPanel>
+
+                                <!-- ListBox Students -->
+                                <ListBox Name="lstBxStudents" Grid.Row="1" Margin="0,10,0,15" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                         MinWidth="265" Background="{DynamicResource clrBlueWhite}" VerticalAlignment="Stretch" SelectedIndex="0"
+                                         Style="{DynamicResource styleListBoxStudent}" ItemContainerStyle="{DynamicResource styleListBoxItemsStudent}"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Expander>                
+
+                <!-- Right Content -->
+                <Border Grid.Column="1" CornerRadius="3" BorderThickness="1" BorderBrush="{DynamicResource clrBlueBlack}" Margin="10,0,0,0" Background="{DynamicResource clrLightestBlue}">
+                    <Grid Grid.Column="1" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Title Marks -->
+                        <Border Grid.Row="0" Background="{DynamicResource clrDarkestBlue}" BorderBrush="{DynamicResource clrBlueBlack}"
+                                        BorderThickness="2" CornerRadius="1,1,0,0" HorizontalAlignment="Stretch">
+                            <TextBlock Text="{DynamicResource label.marks}" Style="{DynamicResource styleTextBorderTitle}"/>
+                        </Border>
+
+                        <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="False">
+                            <StackPanel>
+                                <!-- TeacherID -->
+                                <TextBlock Name="txtTeacherID" Text="{Binding UserDataContext.Teacher.TeacherID, Mode=TwoWay}" Visibility="Collapsed"/>
+                                
+                                <Grid Name="gridMarkInformation" Margin="35,10,35,15">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"></RowDefinition>
+                                        <RowDefinition Height="auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Marks Tab -->
+                                    <Grid Grid.Row="0" Grid.Column="0"  HorizontalAlignment="Center" Margin="0,0,0,5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Grid Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Center">
+                                            <Grid.RowDefinitions >
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="100" />
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>                                            
+
+                                            <!-- Name Student-->
+                                            <TextBlock Grid.Row="0" Grid.Column="0" x:Name="lblName" Text="{DynamicResource label.student}" Style="{DynamicResource styleTextBlocksForms}" />
+                                            <TextBlock Grid.Row="0" Grid.Column="1" x:Name="txtName" Text="{Binding StudentID, Converter={StaticResource PersonNameConverter}}" FontWeight="Normal" Style="{DynamicResource styleTextBlocksForms}" HorizontalAlignment="Left" Margin="15,0,0,0"></TextBlock>
+                                            
+                                            <!-- Group -->
+                                            <TextBlock Grid.Row="1" Grid.Column="0" x:Name="lblGroup" Text="{DynamicResource label.group}" Style="{DynamicResource styleTextBlocksForms}"/>
+                                            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cmbBxGroup" Style="{DynamicResource styleCmbBxGroup}" SelectedIndex="0"
+                                                SelectedValuePath="GroupID">
+                                            </ComboBox>
+
+                                            <!-- Date mark -->
+                                            <TextBlock Grid.Row="2" Grid.Column="0" x:Name="lblDateMark" Text="{DynamicResource label.date_mark}" Style="{DynamicResource styleTextBlocksForms}"/>
+                                            <Grid Name="gridDateMark" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" MinWidth="250" IsEnabled="{Binding ElementName=btnSaveChangesMarks, Path=IsEnabled}">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <ComboBox Name="cmbBxYear" Grid.Column="1"></ComboBox>
+                                                <ComboBox Name="cmbBxMonth" Grid.Column="0">
+                                                    <ComboBoxItem Content="{DynamicResource calendar.first_term}"></ComboBoxItem>
+                                                    <ComboBoxItem Content="{DynamicResource calendar.second_term}"></ComboBoxItem>
+                                                    <ComboBoxItem Content="{DynamicResource calendar.third_term}"></ComboBoxItem>
+                                                    <ComboBoxItem Content="{DynamicResource calendar.summer}"></ComboBoxItem>
+                                                </ComboBox>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+
+                                    <!-- Table Marks -->
+                                    <Grid Name="gridTableMarks" Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="{Binding ElementName=btnSaveChangesMarks, Path=IsEnabled}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"></RowDefinition>
+                                            <RowDefinition Height="auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <!-- Header Marks -->
+                                        <Border Grid.Row="0" Grid.ColumnSpan="2" BorderThickness="3,3" BorderBrush="Black" CornerRadius="5,5,0,0" Background="{DynamicResource clrDarkestBlue}" MaxWidth="600" Margin="0,10,0,0">
+                                            <Grid >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Column="0" Text="{DynamicResource label.listening}" Style="{DynamicResource styleTablesTextHeader}"></TextBlock>
+                                                <TextBlock Grid.Column="1" Text="{DynamicResource label.speaking}" Style="{DynamicResource styleTablesTextHeader}"></TextBlock>
+                                                <TextBlock Grid.Column="2" Text="{DynamicResource label.reading}" Style="{DynamicResource styleTablesTextHeader}"></TextBlock>
+                                                <TextBlock Grid.Column="3" Text="{DynamicResource label.writing}" Style="{DynamicResource styleTablesTextHeader}"></TextBlock>
+                                                <TextBlock Grid.Column="4" Text="{DynamicResource label.examn}" Style="{DynamicResource styleTablesTextHeader}"></TextBlock>
+                                                <TextBlock Grid.Column="5" Text="{DynamicResource label.overall}" Style="{DynamicResource styleTablesTextHeader}"></TextBlock>
+                                            </Grid>
+                                        </Border>
+
+                                        <!-- Marks by category -->
+                                        <Border Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="2,0,2,3" BorderBrush="Black" CornerRadius="0,0,5,5" Background="{DynamicResource clrBlueWhite}" MaxWidth="600">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto"></RowDefinition>
+                                                    <RowDefinition Height="auto" ></RowDefinition>
+                                                </Grid.RowDefinitions>
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+
+                                                <!-- Listening -->
+                                                <local:ctrlDecimalTextBox Grid.Row="1" Grid.Column="0" NumericValue="{Binding Listening, Mode=TwoWay}" x:Name="txtListening"/>
+
+                                                <!-- Speaking -->
+                                                <local:ctrlDecimalTextBox Grid.Row="1" Grid.Column="1" NumericValue="{Binding Speaking, Mode=TwoWay}" x:Name="txtSpeaking" />
+
+                                                <!-- Reading -->
+                                                <local:ctrlDecimalTextBox Grid.Row="1" Grid.Column="2" NumericValue="{Binding Reading, Mode=TwoWay}" x:Name="txtReading" />
+
+                                                <!-- Writing -->
+                                                <local:ctrlDecimalTextBox Grid.Row="1" Grid.Column="3" NumericValue="{Binding Writing, Mode=TwoWay}" x:Name="txtWriting"/>
+
+                                                <!-- Examn -->
+                                                <local:ctrlDecimalTextBox Grid.Row="1" Grid.Column="4" NumericValue="{Binding Exam, Mode=TwoWay}" x:Name="txtExamn"/>
+
+                                                <!-- Overall -->
+                                                <local:ctrlDecimalTextBox Grid.Row="1" Grid.Column="5" NumericValue="{Binding Overall, Mode=TwoWay}" x:Name="txtOverall"/>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                </Grid>
+                                
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,15">
+                                    <!-- Button Save Changes -->
+                                    <Button Name="btnSaveChangesMarks" IsEnabled="False" Grid.Row="1" Content="{DynamicResource button.save}" Margin="0,3,0,3" Style="{DynamicResource styleSaveButton}"/>
+
+                                    <!-- Button Edit -->
+                                    <Button Name="btnEditMark" Content="{DynamicResource button.edit}" Style="{DynamicResource styleEditButton}" Margin="5,3,0,3"/>
+
+                                    <!-- Button Cancel -->
+                                    <Button Name="btnCancelEditMark" Content="{DynamicResource button.cancel}" Style="{DynamicResource styleCancelEditButton}" Margin="5,3,0,3" Visibility="Collapsed"/>
+                                </StackPanel>
+
+                                <!-- List Marks -->
+                                <Expander Grid.Row="0" Name="expanderMarks" Header="{DynamicResource label.list_marks}" IsExpanded="True" Style="{DynamicResource styleExpander}" Margin="20,0,20,15" >
+                                    <Grid Name="gridStudentMarks">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Buttons Actions Marks -->
+                                        <StackPanel Grid.Column="0" Orientation="Vertical">
+                                            <Button Name="btnAddMark" Content="{DynamicResource button.add_mark}" Style="{DynamicResource styleAddButton}" Margin="0,10,0,0"/>
+                                        </StackPanel>
+
+                                        <!-- List Marks -->
+                                        <ListBox Grid.Column="1" Name="lstBxMarks" Grid.Row="0" Margin="20,10,20,15" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                            Background="{DynamicResource clrBlueWhite}" Height="350" Button.Click="listMarksClick"
+                                                 Style="{DynamicResource styleListBoxMarks}" ItemContainerStyle="{DynamicResource styleListBoxItemsMark}"/>
+                                    </Grid>
+                                </Expander>
+
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="ctrlProfilePanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008">
+    <UserControl.Resources>
+        <!-- Style Profile Panel -->
+        <Style x:Key="styleProfilePanel">
+            <Setter Property="Panel.MinWidth" Value="150" />
+            <Setter Property="Panel.HorizontalAlignment" Value="Center" />
+            <Setter Property="Panel.VerticalAlignment" Value="Center" />
+            <Setter Property="TextBlock.Margin" Value="0,10,0,10"/>
+            <Setter Property="TextBlock.FontSize" Value="18" />
+            <Setter Property="TextBlock.FontWeight" Value="SemiBold" />
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+            <Setter Property="Border.Background" Value="{DynamicResource clrLightestBlue}" />
+            <Setter Property="Border.CornerRadius" Value="5,5,5,5" />
+            <Setter Property="Border.BorderThickness" Value="2,2,2,2" />
+            <Setter Property="Border.BorderBrush" Value="{DynamicResource clrDarkestBlue}" />
+        </Style>
+
+        <!-- Style Button Logout-->
+        <Style x:Key="styleLogoutButton" TargetType="Button" BasedOn="{StaticResource styleLinkButton}">
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+            <Setter Property="Button.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="imgLogout" Source="../../Images/ProfilePanel/logout_dark.png" Width="20" Margin="0,0,6,0"/>
+                            <TextBlock Text="Sign out" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="15"/>
+                            <ContentPresenter/>
+                        </StackPanel>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Foreground" Value="{DynamicResource clrBlueWhite}" />
+                                <Setter Property="Image.Source" TargetName="imgLogout" Value="../../Images/ProfilePanel/logout_light.png" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Border Name="pnlProfile" Style="{DynamicResource styleProfilePanel}" >
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Photo User -->
+            <Image Grid.Column="0" Source="{Binding Path=UserDataContext.Teacher.Photo.Source}" Height="40" Margin="10,0,0,0"/>
+
+            <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,5,15,5">
+                <!-- Label: Name -->
+                <TextBlock Name="lblUsername" HorizontalAlignment="Right">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0} {1}" >
+                            <Binding Path="UserDataContext.Teacher.Name"/>
+                            <Binding Path="UserDataContext.Teacher.Surname"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+
+                <!-- Sign out Button -->
+                <Button Name="btnSignOut" Style="{DynamicResource styleLogoutButton}" HorizontalAlignment="Right" Click="btnSignOut_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

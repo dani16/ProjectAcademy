@@ -1,0 +1,101 @@
+﻿<Window x:Class="dlgViewEvent"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ProjectAcademy"
+    Title="{DynamicResource window.edit_event}" HorizontalAlignment="Center" MinWidth="620" Width="620" MaxWidth="600" Height="400"
+    WindowStyle="None" AllowsTransparency="True" ResizeMode="CanResizeWithGrip" Background="Transparent" Top="0"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!-- Null Date to DatePicker SelectedDate -->
+        <local:clsNullDateToDatePickerConverter x:Key="NullDateToDatePickerConvert"/>
+    </Window.Resources>
+    <Border Style="{DynamicResource styleDialog}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="False">
+            <Grid Margin="75,20,75,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Title Edit Event -->
+                <TextBlock Text="{DynamicResource label.view_event}" Grid.Row="0" FontSize="30" HorizontalAlignment="Center" Foreground="{DynamicResource clrDarkestBlue}" FontWeight="SemiBold" Margin="0,0,0,20"/>
+
+                <Grid Name="gridEventInformation" Grid.Row="1" HorizontalAlignment="Center" Margin="75,5,75,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Subject -->
+                    <TextBlock Grid.Row="1" Grid.Column="0" x:Name="lblSubject" Text="{DynamicResource label.subject}" Style="{DynamicResource styleTextBlocksForms}"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtSubject" Text="{Binding Subject, Mode=TwoWay}" MaxLength="500" Style="{DynamicResource styleTextBoxForms}"/>
+                    <TextBlock Name="lblErrorSubject" Style="{DynamicResource styleError}" Margin="0,0,0,3" Grid.Row="2" Grid.Column="1" 
+                               Text="{DynamicResource error.name}"/>
+
+                    <!-- Detail -->
+                    <TextBlock Grid.Row="3" Grid.Column="0" x:Name="lblDetail" Text="{DynamicResource label.detail}" Style="{DynamicResource styleTextBlocksForms}" VerticalAlignment="Top"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtDetail" Text="{Binding Detail, Mode=TwoWay}" MaxLength="500" Style="{DynamicResource styleTextBoxForms}" 
+                             AcceptsReturn="True" TextWrapping="Wrap" Height="50"/>
+
+                    <!-- Type -->
+                    <TextBlock Grid.Row="4" Grid.Column="0" x:Name="lblType" Text="{DynamicResource label.type}" Style="{DynamicResource styleTextBlocksForms}"/>
+                    <ComboBox Name="cmbBoxType" Grid.Row="4" Grid.Column="1" SelectedIndex="0">
+                        <ComboBoxItem Content="{DynamicResource label.exam}"/>
+                        <ComboBoxItem Content="{DynamicResource label.test}"/>
+                        <ComboBoxItem Content="{DynamicResource label.holiday}"/>
+                        <ComboBoxItem Content="{DynamicResource label.other}"/>
+                    </ComboBox>
+
+                    <!-- Starting Date -->
+                    <TextBlock Grid.Row="5" Grid.Column="0" x:Name="lblStartingDate" Text="{DynamicResource label.date_starting}" Style="{DynamicResource styleTextBlocksForms}"/>
+                    <DatePicker Grid.Row="5" Grid.Column="1" x:Name="txtStartingDate" Text="{Binding StartDate, Converter={StaticResource NullDateToDatePickerConvert}, StringFormat='dd/MM/yyy', Mode=TwoWay}"
+                                                    IsEnabled="{Binding ElementName=btnSaveChangesStudents, Path=IsEnabled}" />
+                    <TextBlock Name="lblErrorStartingDate" Style="{DynamicResource styleError}" Margin="0,0,0,3" Grid.Row="6" Grid.Column="1" 
+                                        Text="{DynamicResource error.date}"/>
+
+                    <!-- Finish Date -->
+                    <TextBlock Grid.Row="7" Grid.Column="0" x:Name="lblFinishDate" Text="{DynamicResource label.date_finish}" Style="{DynamicResource styleTextBlocksForms}"/>
+                    <DatePicker Grid.Row="7" Grid.Column="1" x:Name="txtFinishDate" Text="{Binding FinishDate, Converter={StaticResource NullDateToDatePickerConvert}, StringFormat='dd/MM/yyy', Mode=TwoWay}"
+                                                    IsEnabled="{Binding ElementName=btnSaveChangesStudents, Path=IsEnabled}" />
+                    <TextBlock Name="lblErrorFinishDate" Style="{DynamicResource styleError}" Margin="0,0,0,3" Grid.Row="8" Grid.Column="1" 
+                                        Text="{DynamicResource error.date}"/>
+                </Grid>
+
+                <!-- Accept and Cancel Buttons  -->
+                <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed" Name="stckPnlEditButtons">
+                    <!-- Button Add New Student -->
+                    <Button x:Name="btnSaveEvent" Content="{DynamicResource button.save}" Margin="0,10,0,0" Style="{DynamicResource styleAcceptButton}"/>
+
+                    <!-- Button Cancel New Student -->
+                    <Button x:Name="btnCancelEvent" Content="{DynamicResource button.cancel}" Margin="20,10,0,0" Style="{DynamicResource styleCancelButton}"/>
+                </StackPanel>
+
+                <!-- Edit and Delete Buttons  -->
+                <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Name="stckPnlViewButtons">
+                    <!-- Button Add New Student -->
+                    <Button x:Name="btnEditEvent" Content="{DynamicResource button.edit}" Margin="0,10,0,0" Style="{DynamicResource styleEditButton}"/>
+
+                    <!-- Button Cancel New Student -->
+                    <Button x:Name="btnDeleteEvent" Content="{DynamicResource button.delete}" Margin="20,10,0,0" Style="{DynamicResource styleDeleteButton}"/>
+
+                    <!-- Button Exit -->
+                    <Button x:Name="btnExit" Content="{DynamicResource button.exit}" Margin="20,10,0,0" Style="{DynamicResource styleCancelButton}"/>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Border>
+</Window>

@@ -1,0 +1,95 @@
+﻿<Window x:Class="dlgNewUser"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Add New User" HorizontalAlignment="Center" MinWidth="300" Width="600" MaxWidth="600" Height="520"
+    WindowStyle="None" AllowsTransparency="True" ResizeMode="CanResizeWithGrip" Background="Transparent" Top="0"
+        WindowStartupLocation="CenterScreen">        
+    <Border Style="{DynamicResource styleDialog}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="False">
+            <Grid Margin="75,20,75,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- Title Change Password -->
+                <TextBlock Text="{DynamicResource label.add_new_user}" Grid.Row="0" FontSize="30" HorizontalAlignment="Center" Foreground="{DynamicResource clrDarkestBlue}" FontWeight="SemiBold" Margin="0,0,0,20"/>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Search for existing Teacher with no user -->
+                    <StackPanel Grid.Row="0" >
+                        <Border Grid.Row="1" Name="Button" BorderThickness="2" BorderBrush="{DynamicResource clrBlueBlack}" CornerRadius="10,10,10,10" Padding="15,0,15,0" Background="{DynamicResource clrLightestBlue}" MaxHeight="750">
+                            <StackPanel HorizontalAlignment="Center">                              
+                                <StackPanel Orientation="Vertical">
+                                    <!-- Title seach TextBox -->
+                                    <TextBlock Text="{DynamicResource search.title_teacher}" HorizontalAlignment="Center" Margin="0,5,0,0" FontWeight="SemiBold" Foreground="{DynamicResource clrDarkestBlue}" Style="{DynamicResource styleTextBlocksForms}"/>
+
+                                    <!-- TextBox Search Teacher -->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Name="imgSearch" Source="../../../Images/Basic/search_dark.png" Width="15" />
+                                        <TextBox Name="txtBxSearchTeacher" VerticalAlignment="Center" Margin="10,0,0,0" MaxLength="500"/>
+                                    </StackPanel>
+
+                                    <!-- Message: No results found -->
+                                    <TextBlock Name="txtMessageSearch" Text="{DynamicResource search.message}" Style="{DynamicResource styleTextBlocksSearchMessage}" Margin="0,0,0,5"
+                                       Visibility="Hidden"/>
+                                </StackPanel>
+
+                                <!-- ListBox Teachers -->
+                                <ListBox Name="lstBxTeachers" Margin="0,0,0,20" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                         Background="{DynamicResource clrBlueWhite}" MinHeight="200" MaxWidth="250" MaxHeight="200"
+                                         Style="{DynamicResource styleListBoxPerson}" ItemContainerStyle="{DynamicResource styleListBoxItemsPerson}"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Create User -->
+                    <Border Grid.Row="1" Style="{DynamicResource styleBorderSearcher}" Margin="0,10">
+                        <Grid Name="gridNewTeacher" HorizontalAlignment="Center" Margin="20,15,20,15">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- TeacherID Hidden -->
+                            <TextBlock x:Name="txtTeacherID" Text="{Binding PersonID, Mode=TwoWay}" Visibility="Collapsed"/>
+
+                            <!-- Teacher Name -->
+                            <TextBlock Grid.Row="0" Grid.Column="0" x:Name="lblTeacherName" Text="{DynamicResource label.teacher_name}" Style="{DynamicResource styleTextBlocksForms}" Margin="0,0,5,0"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" x:Name="txtTeacherName" HorizontalAlignment="Center"  Style="{DynamicResource styleTextBlocksForms}">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="Name"/>
+                                        <Binding Path="Surname"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+
+                            <!-- Accept and Cancel Buttons  -->
+                            <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <!-- Button Add New User -->
+                                <Button x:Name="btnCreateNewUser" Content="{DynamicResource button.create}" Margin="0,10,0,0" Style="{DynamicResource styleAcceptButton}"/>
+
+                                <!-- Button Cancel New User -->
+                                <Button x:Name="btnCancelNewUser" Content="{DynamicResource button.cancel}" Margin="20,10,0,0" Style="{DynamicResource styleCancelButton}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>                   
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Border>
+</Window>
+

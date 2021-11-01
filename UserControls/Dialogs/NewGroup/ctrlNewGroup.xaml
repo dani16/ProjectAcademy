@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="ctrlNewGroup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Personal Information -->
+    <Grid  HorizontalAlignment="Center" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <!-- English Level -->
+        <TextBlock Grid.Row="0" Grid.Column="0" x:Name="lblEnglishLevel" Text="{DynamicResource label.english_level}" Style="{DynamicResource styleTextBlocksForms}"/>
+        <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cmbBxEnglishLevel" DisplayMemberPath="EnglishLevel" SelectedIndex="0" />
+
+        <!-- Description -->
+        <TextBlock Grid.Row="1" Grid.Column="0" x:Name="lblDescription" Text="{DynamicResource label.description}" Style="{DynamicResource styleTextBlocksForms}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtDescription" MaxLength="500" Style="{DynamicResource styleTextBoxForms}"/>
+
+        <!-- FeeInscription -->
+        <TextBlock Grid.Row="2" Grid.Column="0" x:Name="lblFeeInscription" Text="{DynamicResource label.fee_inscription}" Style="{DynamicResource styleTextBlocksForms}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtFeeInscription" MaxLength="500" Style="{DynamicResource styleTextBoxForms}"/>
+        <TextBlock Grid.Row="3" Grid.Column="1"  Name="lblErrorFeeInscription" Style="{DynamicResource styleError}" Margin="0,0,0,3" 
+                               Text="{DynamicResource error.fee}"/>
+
+        <!-- FeeMonthly -->
+        <TextBlock Grid.Row="4" Grid.Column="0" x:Name="lblFeeMonthly" Text="{DynamicResource label.fee_monthly}" Style="{DynamicResource styleTextBlocksForms}"/>
+        <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtFeeMonthly" MaxLength="500" Style="{DynamicResource styleTextBoxForms}"/>
+        <TextBlock Grid.Row="5" Grid.Column="1"  Name="lblErrorFeeMonthly" Style="{DynamicResource styleError}" Margin="0,0,0,3" 
+                               Text="{DynamicResource error.fee}"/>
+
+        <!-- Teacher -->
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="{DynamicResource label.teacher}" Style="{DynamicResource styleTextBlocksForms}" />
+        <ComboBox Grid.Row="6" Grid.Column="1" x:Name="cmbBxTeacher" Style="{DynamicResource styleCmbBxTeacher}"
+                                              SelectedValuePath="TeacherID">
+        </ComboBox>
+
+        <!-- Timetable -->
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="{DynamicResource label.timetable}" Style="{DynamicResource styleTextBlocksForms}"/>
+
+        <!-- Accept and Cancel Buttons  -->
+        <StackPanel Grid.Row="8" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <!-- Button Add New Group -->
+            <Button x:Name="btnCreateNewGroup" Content="{DynamicResource button.create}" Margin="0,10,0,0" Style="{DynamicResource styleAcceptButton}"/>
+
+            <!-- Button Cancel New Group -->
+            <Button x:Name="btnCancelNewGroup" Content="{DynamicResource button.cancel}" Margin="20,10,0,0" Style="{DynamicResource styleCancelButton}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
+

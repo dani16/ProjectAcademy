@@ -1,0 +1,23 @@
+﻿<Application x:Class="Application"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    StartupUri="Forms/LoginWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Dictionary of Colors -->
+                <ResourceDictionary Source="Dictionaries/dictionaryColors.xaml"/>
+
+                <!-- Dictionary Images -->
+                <ResourceDictionary Source="Dictionaries/dictionaryImages.xaml"/>
+
+                <!--Dictionary of Styles-->
+                <ResourceDictionary Source="Dictionaries/dictionaryStyles.xaml"/>
+
+                <!-- Dictionary of Languages -->                
+                <ResourceDictionary Source="Dictionaries/dictionaryLanguages.es-ES.xaml" />
+                <ResourceDictionary Source="Dictionaries/dictionaryLanguages.xaml" />                
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

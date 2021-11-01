@@ -1,0 +1,462 @@
+﻿<UserControl x:Class="ctrlContentTabControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ProjectAcademy">
+    <UserControl.Resources>
+        <!-- Configuration Visibility or Hidden Converter -->
+        <local:clsConfigurationVisibilityConverter x:Key="ConfigurationVisibleConvert" />
+
+        <!-- Style TabItem -->
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem" x:Name="TabItem">
+                        <Grid>
+                            <Border Name="Border" BorderThickness="1,1,6,0" BorderBrush="{DynamicResource clrDarkestBlue}" CornerRadius="10,10,0,0" Margin="3,0,0,0">
+                                <Grid  Style="{DynamicResource styleTabHeaderText}" HorizontalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Name="imageHeader" Width="25" Margin="2,2,2,2"></Image>
+                                    <ContentPresenter Grid.Column="1" x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="60"
+                                        ContentSource="Header" Margin="2,0,2,0" Visibility="Visible"/>
+                                </Grid>
+                            </Border>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <!-- Tab Home -->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True" />
+                                    <Condition Property="Name" Value="tabHome" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/home_light.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrLightestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntSelectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="Name" Value="tabHome" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/home_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntUnselectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="Name" Value="tabHome" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/home_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntHoverTabBackground}" />
+                            </MultiTrigger>
+
+                            <!--Tab Students-->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True" />
+                                    <Condition Property="Name" Value="tabStudents" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/student_boy_light.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrLightestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntSelectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="Name" Value="tabStudents" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/student_boy_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntUnselectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="Name" Value="tabStudents" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/student_boy_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntHoverTabBackground}" />
+                            </MultiTrigger>
+
+                            <!--Tab Groups-->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True" />
+                                    <Condition Property="Name" Value="tabGroups" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/group_light.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrLightestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntSelectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="Name" Value="tabGroups" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/group_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntUnselectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="Name" Value="tabGroups" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/group_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntHoverTabBackground}" />
+                            </MultiTrigger>
+
+                            <!--Tab Teachers-->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True" />
+                                    <Condition Property="Name" Value="tabTeachers" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/teacher_male_light.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrLightestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntSelectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="Name" Value="tabTeachers" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/teacher_male_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntUnselectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="Name" Value="tabTeachers" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/teacher_male_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntHoverTabBackground}" />
+                            </MultiTrigger>
+
+                            <!--Tab Assessment -->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True" />
+                                    <Condition Property="Name" Value="tabAssessment" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/assessment_light.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrLightestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntSelectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="Name" Value="tabAssessment" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/assessment_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntUnselectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="Name" Value="tabAssessment" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/assessment_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntHoverTabBackground}" />
+                            </MultiTrigger>
+
+                            <!--Tab Marks-->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True" />
+                                    <Condition Property="Name" Value="tabMarks" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/marks_light.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrLightestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntSelectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="Name" Value="tabMarks" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/marks_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntUnselectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="Name" Value="tabMarks" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/marks_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntHoverTabBackground}" />
+                            </MultiTrigger>
+
+                            <!--Tab Calendar-->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True" />
+                                    <Condition Property="Name" Value="tabCalendar" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/calendar_light.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrLightestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntSelectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="Name" Value="tabCalendar" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/calendar_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntUnselectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="Name" Value="tabCalendar" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/calendar_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntHoverTabBackground}" />
+                            </MultiTrigger>
+
+                            <!--Tab Timetable-->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True" />
+                                    <Condition Property="Name" Value="tabTimetable" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/timetable_light.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrLightestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntSelectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="Name" Value="tabTimetable" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/timetable_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntUnselectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="Name" Value="tabTimetable" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/timetable_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntHoverTabBackground}" />
+                            </MultiTrigger>
+
+                            <!--Tab Payments-->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True" />
+                                    <Condition Property="Name" Value="tabPayments" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/payments_light.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrLightestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntSelectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="Name" Value="tabPayments" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/payments_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntUnselectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="Name" Value="tabPayments" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/payments_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntHoverTabBackground}" />
+                            </MultiTrigger>
+
+                            <!--Tab Settings-->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True" />
+                                    <Condition Property="Name" Value="tabSettings" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/settings_light.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrLightestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntSelectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="Name" Value="tabSettings" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/settings_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntUnselectedTabBackground}" />
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="Name" Value="tabSettings" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Source" TargetName="imageHeader" Value="/Images/TabItems/settings_dark.png" />
+                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource grdntHoverTabBackground}" />
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <TabControl Name="tbCtrlMain" BorderThickness="0" Padding="0" Margin="15,0,15,0" Background="Transparent">
+        <!--TabItems-->
+        <!-- Home -->
+        <TabItem Header="{DynamicResource label.home}" Name="tabHome" Button.Click="HomeTabItem_Click">
+            <TabItem.Visibility>
+                <MultiBinding Converter="{StaticResource ConfigurationVisibleConvert}">
+                    <Binding Path="UserDataContext.User.Type"/>
+                    <Binding Path="Configuration.ShowHome"/>
+                </MultiBinding>
+            </TabItem.Visibility>
+            <local:ctrlHomeTab></local:ctrlHomeTab>
+        </TabItem>
+
+        <!-- Students -->
+        <TabItem Header="{DynamicResource label.students}" Name="tabStudents" Button.Click="StudentsTabItem_Click">
+            <TabItem.Visibility>
+                <MultiBinding Converter="{StaticResource ConfigurationVisibleConvert}">
+                    <Binding Path="UserDataContext.User.Type"/>
+                    <Binding Path="Configuration.ShowStudents"/>
+                </MultiBinding>
+            </TabItem.Visibility>
+            <local:ctrlStudentsTab x:Name="studentTabItem"></local:ctrlStudentsTab>
+        </TabItem>
+
+        <!-- Groups -->
+        <TabItem Header="{DynamicResource label.groups}" Name="tabGroups" Button.Click="GroupTabItem_Click">
+            <TabItem.Visibility>
+                <MultiBinding Converter="{StaticResource ConfigurationVisibleConvert}">
+                    <Binding Path="UserDataContext.User.Type"/>
+                    <Binding Path="Configuration.ShowGroups"/>
+                </MultiBinding>
+            </TabItem.Visibility>
+            <local:ctrlGroupsTab x:Name="groupTabItem"></local:ctrlGroupsTab>
+        </TabItem>
+
+        <!-- Teachers -->
+        <TabItem Header="{DynamicResource label.teachers}" Name="tabTeachers" Button.Click="TeacherTabItem_Click">
+            <TabItem.Visibility>
+                <MultiBinding Converter="{StaticResource ConfigurationVisibleConvert}">
+                    <Binding Path="UserDataContext.User.Type"/>
+                    <Binding Path="Configuration.ShowTeachers"/>
+                </MultiBinding>
+            </TabItem.Visibility>
+            <local:ctrlTeachersTab x:Name="teacherTabItem"></local:ctrlTeachersTab>
+        </TabItem>
+
+        <!-- Assessment -->
+        <TabItem Header="{DynamicResource label.assessment}" Name="tabAssessment">
+            <TabItem.Visibility>
+                <MultiBinding Converter="{StaticResource ConfigurationVisibleConvert}">
+                    <Binding Path="UserDataContext.User.Type"/>
+                    <Binding Path="Configuration.ShowAssessment"/>
+                </MultiBinding>
+            </TabItem.Visibility>
+            <local:ctrlAssessmentTab></local:ctrlAssessmentTab>
+        </TabItem>
+
+        <!-- Marks -->
+        <TabItem Header="{DynamicResource label.marks}" Name="tabMarks">
+            <TabItem.Visibility>
+                <MultiBinding Converter="{StaticResource ConfigurationVisibleConvert}">
+                    <Binding Path="UserDataContext.User.Type"/>
+                    <Binding Path="Configuration.ShowMarks"/>
+                </MultiBinding>
+            </TabItem.Visibility>
+            <local:ctrlMarksTab x:Name="markTabItem"></local:ctrlMarksTab>
+        </TabItem>
+
+        <!-- Calendar -->
+        <TabItem Header="{DynamicResource label.calendar}" Name="tabCalendar">
+            <TabItem.Visibility>
+                <MultiBinding Converter="{StaticResource ConfigurationVisibleConvert}">
+                    <Binding Path="UserDataContext.User.Type"/>
+                    <Binding Path="Configuration.ShowCalendar"/>
+                </MultiBinding>
+            </TabItem.Visibility>
+            <local:ctrlCalendarTab></local:ctrlCalendarTab>
+        </TabItem>
+
+        <!-- Timetable -->
+        <TabItem Header="{DynamicResource label.timetable}" Name="tabTimetable">
+            <TabItem.Visibility>
+                <MultiBinding Converter="{StaticResource ConfigurationVisibleConvert}">
+                    <Binding Path="UserDataContext.User.Type"/>
+                    <Binding Path="Configuration.ShowTimetable"/>
+                </MultiBinding>
+            </TabItem.Visibility>
+            <local:ctrlTimetableTab></local:ctrlTimetableTab>
+        </TabItem>
+
+        <!-- Payments -->
+        <TabItem Header="{DynamicResource label.payment}" Name="tabPayments">
+            <TabItem.Visibility>
+                <MultiBinding Converter="{StaticResource ConfigurationVisibleConvert}">
+                    <Binding Path="UserDataContext.User.Type"/>
+                    <Binding Path="Configuration.ShowPayments"/>
+                </MultiBinding>
+            </TabItem.Visibility>
+            <local:ctrlPaymentsTab x:Name="paymentsTabItem"></local:ctrlPaymentsTab>
+        </TabItem>
+
+        <!-- Settings -->
+        <TabItem Header="{DynamicResource label.settings}" Name="tabSettings">
+            <local:ctrlSettingsTab></local:ctrlSettingsTab>
+        </TabItem>
+    </TabControl>
+</UserControl>

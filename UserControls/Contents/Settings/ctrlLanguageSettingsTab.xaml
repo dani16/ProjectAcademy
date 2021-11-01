@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="ctrlLanguageSettingsTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+    <Border Style="{DynamicResource styleSettingsTabContent}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="False">
+            <Grid Margin="75,20,75,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Language Settings -->
+                <StackPanel HorizontalAlignment="Center" >
+                    <!--VerticalAlignment="Center"-->
+                    <!-- Select LanguageSettingsTab -->
+                    <TextBlock Text="{DynamicResource label.language_set}" HorizontalAlignment="Center" FontSize="30" Foreground="{DynamicResource clrDarkBlue}" Margin="0,0,0,20"/>
+
+                    <Grid HorizontalAlignment="Center" Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- English Language -->
+                        <Button Grid.Column="0" Name="btnEnglishLanguage" Margin="15,0,15,0" MaxHeight="220" MinWidth="300" Style="{DynamicResource styleBasicButton}" >
+                            <StackPanel Orientation="Vertical" Margin="20,10,20,10">
+                                <Image Source="../../../Images/SettingsTabItems/language_english.png" ></Image>
+                                <TextBlock Text="{DynamicResource label.language_english}" HorizontalAlignment="Center" Margin="0,15,0,0" Foreground="{DynamicResource clrBlueBlack}" FontSize="25"></TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Spanish Language -->
+                        <Button Grid.Column="1" Name="btnSpanishLanguage" Margin="15,0,15,0" MaxHeight="220" MinWidth="300" Style="{DynamicResource styleBasicButton}">
+                            <StackPanel Orientation="Vertical" Margin="20,10,20,10">
+                                <Image Source="../../../Images/SettingsTabItems/language_spanish.png" ></Image>
+                                <TextBlock Text="{DynamicResource label.language_spanish}" HorizontalAlignment="Center" Margin="0,15,0,0" Foreground="{DynamicResource clrBlueBlack}" FontSize="25"></TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+
+                    <!-- Message Language Selected -->
+                    <TextBlock Name="txtLanguageSelected" Grid.Row="2" HorizontalAlignment="Center" FontSize="17" Foreground="{DynamicResource clrDarkBlue}" Margin="0,10,0,1"/>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Border>
+</UserControl>

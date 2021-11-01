@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="ctrlCalendarItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             MinWidth="100" MinHeight="100">
+    <Border Name="brdCalendarItem" BorderThickness="1,0,1,1" BorderBrush="Black" CornerRadius="0,0,5,5" Background="White" Margin="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Name="brdCalendarItemHeader" CornerRadius="0" Grid.Row="0" BorderBrush="{DynamicResource clrBlueBlack}" BorderThickness="1" Background="{DynamicResource clrDarkBlue}" >
+                <TextBlock Name="txtNumberDay" Text="1" FontWeight="Bold" FontFamily="Arial" Foreground="{DynamicResource clrBlueWhite}" Margin="10,3,5,0"/>
+            </Border>
+            <StackPanel Grid.Row="1" Name="stckPnlEvents" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel.Style>
+                    <Style>
+                        <Setter Property="Border.Background" Value="white"/>
+                        <Style.Triggers>
+                            <Trigger Property="Border.IsMouseOver" Value="True">
+                                <Setter Property="Border.Background" Value="{DynamicResource clrLightestBlue}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

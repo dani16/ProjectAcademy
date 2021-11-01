@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="ctrlCalendarEvent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" >
+    <Border Name="brdCalendarEvent" CornerRadius="5" BorderBrush="{DynamicResource clrBlueBlack}" BorderThickness="1" Margin="3" MaxWidth="90">
+        <Grid>
+            <TextBlock Name="txtType" Text="{Binding Path=Type}" Visibility="Collapsed"/>
+            <TextBlock Name="txtEventSubject" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="12" Text="{Binding Path=Subject}" Padding="5,2" Style="{DynamicResource styleTextBlocksForms}" MinWidth="90" TextWrapping="Wrap"/>
+            <!--<TextBlock Name="txtEventDetail" Text="{Binding Path=Detail}" FontSize="10" Padding="2" TextWrapping="Wrap"/>-->
+        </Grid>
+    </Border>
+</UserControl>
