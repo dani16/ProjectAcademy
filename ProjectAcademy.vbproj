@@ -1,0 +1,679 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6E6B1D12-7946-4104-80D6-999FAEF7FF79}</ProjectGuid>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ProjectAcademy</RootNamespace>
+    <AssemblyName>ProjectAcademy</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <IncrementalBuild>true</IncrementalBuild>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>ProjectAcademy.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <IncrementalBuild>false</IncrementalBuild>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>ProjectAcademy.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Spire.License">
+      <HintPath>D:\Dani\Copy\DAM\2ºCFGS\Proyecto DAM\Proyecto Gestion Academia\Aplicacion\Librerias Externas\spire.pdf-fe_3.2.52\spire.pdf-fe_3.2.52\BIN\NET4.0 ClientProfile\Spire.License.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Pdf">
+      <HintPath>D:\Dani\Copy\DAM\2ºCFGS\Proyecto DAM\Proyecto Gestion Academia\Aplicacion\Librerias Externas\spire.pdf-fe_3.2.52\spire.pdf-fe_3.2.52\BIN\NET4.0 ClientProfile\Spire.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="Application.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="UserControls\Calendar\ctrlCalendarContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Calendar\ctrlCalendarEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Calendar\ctrlCalendarItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Calendar\ctrlCalendarWeek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Contents\ctrlAssessmentTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Contents\ctrlCalendarTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Contents\ctrlGroupsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Contents\ctrlHomeTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Contents\ctrlMarksTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Contents\ctrlPaymentsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Contents\ctrlSettingsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Contents\ctrlStudentsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Contents\ctrlTeachersTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Contents\ctrlTimetableTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Contents\Settings\ctrlAdvancedSettingsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Contents\Settings\ctrlLanguageSettingsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Contents\Settings\ctrlPreferencesSettingsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Contents\Settings\ctrlProfileSettingsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Contents\Settings\ctrlUsersSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Dialogs\AddGroupToStudent\dlgAddGroupToStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Dialogs\AddGroupToTeacher\dlgAddGroupToTeacher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Dialogs\AddNewUser\dlgNewUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Dialogs\AddNotifications\dlgAddNotification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Dialogs\AddStudentToGroup\dlgAddStudentToGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Dialogs\CalendarEvents\dlgAddEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Dialogs\CalendarEvents\dlgViewEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Dialogs\ChangePassword\dlgChangePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Dialogs\AddMarks\dlgAddMark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Dialogs\NewGroup\ctrlNewGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Dialogs\NewGroup\dlgNewGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Dialogs\NewStudent\ctrlNewExistingPersonStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Dialogs\NewStudent\ctrlNewPersonStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Dialogs\NewStudent\dlgNewStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Dialogs\NewTeacher\ctrlNewExistingPersonTeacher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Dialogs\NewTeacher\ctrlNewPersonTeacher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Dialogs\NewTeacher\dlgNewTeacher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MessageBoxes\msgBxOk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MessageBoxes\msgBxYesNo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MessageBoxes\msgBxYesNoWithCheckBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Panels\ctrlProfilePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Panels\Login\ctrlLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Tabs\ctrlContentTabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Tabs\ctrlSettingsTabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TextBoxes\ctrlDecimalTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Timetable\ctrlTimetableClass.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Timetable\ctrlTimetableClassSmall.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Timetable\ctrlTimetableContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Timetable\ctrlTimetableItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Timetable\ctrlTimetableWeek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionaries\dictionaryColors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionaries\dictionaryImages.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionaries\dictionaryLanguages.es-ES.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionaries\dictionaryLanguages.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionaries\dictionaryStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Application.xaml.vb">
+      <DependentUpon>Application.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Converters\clsGroupNameConverter.vb" />
+    <Compile Include="Classes\Converters\clsMarkDateConverter.vb" />
+    <Compile Include="Classes\Converters\clsPersonNameConverter.vb" />
+    <Compile Include="Classes\Managers\clsNotificationManager.vb" />
+    <Compile Include="Classes\Managers\clsPreferencesManager.vb" />
+    <Compile Include="Classes\Models\clsConfiguration.vb" />
+    <Compile Include="Classes\Models\clsNotification.vb" />
+    <Compile Include="Classes\Utilities\clsConfigurationDataContext.vb" />
+    <Compile Include="Classes\Managers\clsConfigurationManager.vb" />
+    <Compile Include="Classes\Utilities\clsConnection.vb" />
+    <Compile Include="Classes\Models\clsPreferences.vb" />
+    <Compile Include="Classes\Utilities\clsValidator.vb" />
+    <Compile Include="Classes\Converters\clsConfigurationVisibilityConverter.vb" />
+    <Compile Include="Classes\Converters\clsGroupIconConverter.vb" />
+    <Compile Include="Classes\Converters\clsNullDateToDatePickerConverter.vb" />
+    <Compile Include="Classes\Converters\clsNullDateToTextConverter.vb" />
+    <Compile Include="Classes\Converters\clsPersonSexToRadioButtonConverter.vb" />
+    <Compile Include="Classes\Converters\clsTimetableClassBackgroundConverter.vb" />
+    <Compile Include="Classes\Converters\clsTimetableClassTextConverter.vb" />
+    <Compile Include="Classes\Managers\clsAssessmentManager.vb" />
+    <Compile Include="Classes\Managers\clsInscriptionManager.vb" />
+    <Compile Include="Classes\Managers\clsMarkManager.vb" />
+    <Compile Include="Classes\GeneratePDF\clsGenerateMark.vb" />
+    <Compile Include="Classes\GeneratePDF\clsGenerateReceipt.vb" />
+    <Compile Include="Classes\Models\clsAssessment.vb" />
+    <Compile Include="Classes\Models\clsCalendarEvent.vb" />
+    <Compile Include="Classes\Managers\clsCalendarEventManager.vb" />
+    <Compile Include="Classes\Models\clsEnglishLevel.vb" />
+    <Compile Include="Classes\Managers\clsEnglishLevelManager.vb" />
+    <Compile Include="Classes\Models\clsGroup.vb" />
+    <Compile Include="Classes\Managers\clsGroupManager.vb" />
+    <Compile Include="Classes\Models\clsMark.vb" />
+    <Compile Include="Classes\Models\clsPayment.vb" />
+    <Compile Include="Classes\Managers\clsPaymentManager.vb" />
+    <Compile Include="Classes\Models\clsPerson.vb" />
+    <Compile Include="Classes\Managers\clsPersonManager.vb" />
+    <Compile Include="Classes\Models\clsStudent.vb" />
+    <Compile Include="Classes\Managers\clsStudentManager.vb" />
+    <Compile Include="Classes\Models\clsTeacher.vb" />
+    <Compile Include="Classes\Managers\clsTeacherManager.vb" />
+    <Compile Include="Classes\Models\clsTimetable.vb" />
+    <Compile Include="Classes\Managers\clsTimetableManager.vb" />
+    <Compile Include="Classes\Models\clsUser.vb" />
+    <Compile Include="Classes\Utilities\clsUserDataContext.vb" />
+    <Compile Include="Classes\Utilities\clsUserDataContextManager.vb" />
+    <Compile Include="Classes\Managers\clsUserManager.vb" />
+    <Compile Include="Commands\clsDelegateCommand.vb" />
+    <Compile Include="Controllers\clsStudentTabController.vb" />
+    <Compile Include="UserControls\Calendar\ctrlCalendarContent.xaml.vb">
+      <DependentUpon>ctrlCalendarContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Calendar\ctrlCalendarEvent.xaml.vb">
+      <DependentUpon>ctrlCalendarEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Calendar\ctrlCalendarItem.xaml.vb">
+      <DependentUpon>ctrlCalendarItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Calendar\ctrlCalendarWeek.xaml.vb">
+      <DependentUpon>ctrlCalendarWeek.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contents\ctrlAssessmentTab.xaml.vb">
+      <DependentUpon>ctrlAssessmentTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contents\ctrlCalendarTab.xaml.vb">
+      <DependentUpon>ctrlCalendarTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contents\ctrlGroupsTab.xaml.vb">
+      <DependentUpon>ctrlGroupsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contents\ctrlHomeTab.xaml.vb">
+      <DependentUpon>ctrlHomeTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contents\ctrlMarksTab.xaml.vb">
+      <DependentUpon>ctrlMarksTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contents\ctrlPaymentsTab.xaml.vb">
+      <DependentUpon>ctrlPaymentsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contents\ctrlSettingsTab.xaml.vb">
+      <DependentUpon>ctrlSettingsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contents\ctrlStudentsTab.xaml.vb">
+      <DependentUpon>ctrlStudentsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contents\ctrlTeachersTab.xaml.vb">
+      <DependentUpon>ctrlTeachersTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contents\ctrlTimetableTab.xaml.vb">
+      <DependentUpon>ctrlTimetableTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contents\Settings\ctrlAdvancedSettingsTab.xaml.vb">
+      <DependentUpon>ctrlAdvancedSettingsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contents\Settings\ctrlLanguageSettingsTab.xaml.vb">
+      <DependentUpon>ctrlLanguageSettingsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contents\Settings\ctrlPreferencesSettingsTab.xaml.vb">
+      <DependentUpon>ctrlPreferencesSettingsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contents\Settings\ctrlProfileSettingsTab.xaml.vb">
+      <DependentUpon>ctrlProfileSettingsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contents\Settings\ctrlUsersSettings.xaml.vb">
+      <DependentUpon>ctrlUsersSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Dialogs\AddGroupToStudent\dlgAddGroupToStudent.xaml.vb">
+      <DependentUpon>dlgAddGroupToStudent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Dialogs\AddGroupToTeacher\dlgAddGroupToTeacher.xaml.vb">
+      <DependentUpon>dlgAddGroupToTeacher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Dialogs\AddNewUser\dlgNewUser.xaml.vb">
+      <DependentUpon>dlgNewUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Dialogs\AddNotifications\dlgAddNotification.xaml.vb">
+      <DependentUpon>dlgAddNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Dialogs\AddStudentToGroup\dlgAddStudentToGroup.xaml.vb">
+      <DependentUpon>dlgAddStudentToGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Dialogs\CalendarEvents\dlgAddEvent.xaml.vb">
+      <DependentUpon>dlgAddEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Dialogs\CalendarEvents\dlgViewEvent.xaml.vb">
+      <DependentUpon>dlgViewEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Dialogs\ChangePassword\dlgChangePassword.xaml.vb">
+      <DependentUpon>dlgChangePassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Dialogs\AddMarks\dlgAddMark.xaml.vb">
+      <DependentUpon>dlgAddMark.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Dialogs\NewGroup\ctrlNewGroup.xaml.vb">
+      <DependentUpon>ctrlNewGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Dialogs\NewGroup\dlgNewGroup.xaml.vb">
+      <DependentUpon>dlgNewGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Dialogs\NewStudent\ctrlNewExistingPersonStudent.xaml.vb">
+      <DependentUpon>ctrlNewExistingPersonStudent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Dialogs\NewStudent\ctrlNewPersonStudent.xaml.vb">
+      <DependentUpon>ctrlNewPersonStudent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Dialogs\NewStudent\dlgNewStudent.xaml.vb">
+      <DependentUpon>dlgNewStudent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Dialogs\NewTeacher\ctrlNewExistingPersonTeacher.xaml.vb">
+      <DependentUpon>ctrlNewExistingPersonTeacher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Dialogs\NewTeacher\ctrlNewPersonTeacher.xaml.vb">
+      <DependentUpon>ctrlNewPersonTeacher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Dialogs\NewTeacher\dlgNewTeacher.xaml.vb">
+      <DependentUpon>dlgNewTeacher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MessageBoxes\msgBxOk.xaml.vb">
+      <DependentUpon>msgBxOk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MessageBoxes\msgBxYesNo.xaml.vb">
+      <DependentUpon>msgBxYesNo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MessageBoxes\msgBxYesNoWithCheckBox.xaml.vb">
+      <DependentUpon>msgBxYesNoWithCheckBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Panels\ctrlProfilePanel.xaml.vb">
+      <DependentUpon>ctrlProfilePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Panels\Login\ctrlLogin.xaml.vb">
+      <DependentUpon>ctrlLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Tabs\ctrlContentTabControl.xaml.vb">
+      <DependentUpon>ctrlContentTabControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Tabs\ctrlSettingsTabControl.xaml.vb">
+      <DependentUpon>ctrlSettingsTabControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TextBoxes\ctrlDecimalTextBox.xaml.vb">
+      <DependentUpon>ctrlDecimalTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Timetable\ctrlTimetableClass.xaml.vb">
+      <DependentUpon>ctrlTimetableClass.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Timetable\ctrlTimetableClassSmall.xaml.vb">
+      <DependentUpon>ctrlTimetableClassSmall.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Timetable\ctrlTimetableContent.xaml.vb">
+      <DependentUpon>ctrlTimetableContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Timetable\ctrlTimetableItem.xaml.vb">
+      <DependentUpon>ctrlTimetableItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Timetable\ctrlTimetableWeek.xaml.vb">
+      <DependentUpon>ctrlTimetableWeek.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LoginWindow.xaml.vb">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainWindow.xaml.vb">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="System.Threading.Tasks" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows" />
+    <Import Include="System.Windows.Controls" />
+    <Import Include="System.Windows.Data" />
+    <Import Include="System.Windows.Documents" />
+    <Import Include="System.Windows.Input" />
+    <Import Include="System.Windows.Shapes" />
+    <Import Include="System.Windows.Media" />
+    <Import Include="System.Windows.Media.Imaging" />
+    <Import Include="System.Windows.Navigation" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="My Project\AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWpfExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.WPF.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <AppDesigner Include="My Project\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Basic\next_dark.png" />
+    <Resource Include="Images\Basic\next_light.png" />
+    <Resource Include="Images\Basic\previous_dark.png" />
+    <Resource Include="Images\Basic\previous_light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\App\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Basic\accept_dark.png" />
+    <Resource Include="Images\Basic\accept_light.png" />
+    <Resource Include="Images\Basic\add_dark.png" />
+    <Resource Include="Images\Basic\add_light.png" />
+    <Resource Include="Images\Basic\cancel_dark.png" />
+    <Resource Include="Images\Basic\cancel_light.png" />
+    <Resource Include="Images\Basic\change_image_dark.png" />
+    <Resource Include="Images\Basic\change_image_light.png" />
+    <Resource Include="Images\Basic\clean_dark.png" />
+    <Resource Include="Images\Basic\clean_light.png" />
+    <Resource Include="Images\Basic\delete_dark.png" />
+    <Resource Include="Images\Basic\delete_light.png" />
+    <Resource Include="Images\Basic\download_dark.png" />
+    <Resource Include="Images\Basic\download_light.png" />
+    <Resource Include="Images\Basic\edit_dark.png" />
+    <Resource Include="Images\Basic\edit_light.png" />
+    <Resource Include="Images\Basic\group_finish_dark.png" />
+    <Resource Include="Images\Basic\group_finish_light.png" />
+    <Resource Include="Images\Basic\print_dark.png" />
+    <Resource Include="Images\Basic\print_light.png" />
+    <Resource Include="Images\Basic\refresh_dark.png" />
+    <Resource Include="Images\Basic\refresh_light.png" />
+    <Resource Include="Images\Basic\save_dark.png" />
+    <Resource Include="Images\Basic\save_light.png" />
+    <Resource Include="Images\Basic\search_dark.png" />
+    <Resource Include="Images\Basic\search_light.png" />
+    <Resource Include="Images\Basic\teacher_student_dark.png" />
+    <Resource Include="Images\Basic\teacher_student_light.png" />
+    <Resource Include="Images\Basic\view_dark.png" />
+    <Resource Include="Images\Basic\view_light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DefaultProfilePhoto\student_boy.png" />
+    <Resource Include="Images\DefaultProfilePhoto\student_girl.png" />
+    <Resource Include="Images\DefaultProfilePhoto\student_man.png" />
+    <Resource Include="Images\DefaultProfilePhoto\student_women.png" />
+    <Resource Include="Images\DefaultProfilePhoto\teacher_man.png" />
+    <Resource Include="Images\DefaultProfilePhoto\teacher_women.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LoginPanel\loading.gif" />
+    <Resource Include="Images\LoginPanel\login_dark.png" />
+    <Resource Include="Images\LoginPanel\login_light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\GroupIcons\a1_group.png" />
+    <Resource Include="Images\GroupIcons\a2_group.png" />
+    <Resource Include="Images\GroupIcons\b1_group.png" />
+    <Resource Include="Images\GroupIcons\b2_group.png" />
+    <Resource Include="Images\GroupIcons\c1_group.png" />
+    <Resource Include="Images\GroupIcons\c2_group.png" />
+    <Resource Include="Images\GroupIcons\default_group.png" />
+    <Resource Include="Images\GroupIcons\infants_group.png" />
+    <Resource Include="Images\GroupIcons\primary_group.png" />
+    <Resource Include="Images\GroupIcons\secondary_group.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ProfilePanel\logout_dark.png" />
+    <Resource Include="Images\ProfilePanel\logout_light.png" />
+    <Resource Include="Images\ProfilePanel\signout_ligth.png" />
+    <Resource Include="Images\ProfilePanel\view_profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SettingsTabItems\advanced_dark.png" />
+    <Resource Include="Images\SettingsTabItems\advanced_light.png" />
+    <Resource Include="Images\SettingsTabItems\change_password_dark.png" />
+    <Resource Include="Images\SettingsTabItems\change_password_light.png" />
+    <Resource Include="Images\SettingsTabItems\language_dark.png" />
+    <Resource Include="Images\SettingsTabItems\language_english.png" />
+    <Resource Include="Images\SettingsTabItems\language_light.png" />
+    <Resource Include="Images\SettingsTabItems\language_spanish.png" />
+    <Resource Include="Images\SettingsTabItems\preferences_dark.png" />
+    <Resource Include="Images\SettingsTabItems\preferences_light.png" />
+    <Resource Include="Images\SettingsTabItems\profile_dark.png" />
+    <Resource Include="Images\SettingsTabItems\profile_light.png" />
+    <Resource Include="Images\SettingsTabItems\set_admin_dark.png" />
+    <Resource Include="Images\SettingsTabItems\set_admin_light.png" />
+    <Resource Include="Images\SettingsTabItems\unset_admin_dark.png" />
+    <Resource Include="Images\SettingsTabItems\unset_admin_light.png" />
+    <Resource Include="Images\SettingsTabItems\users_settings_dark.png" />
+    <Resource Include="Images\SettingsTabItems\users_settings_light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TabItems\assessment_dark.png" />
+    <Resource Include="Images\TabItems\assessment_light.png" />
+    <Resource Include="Images\TabItems\calendar_dark.png" />
+    <Resource Include="Images\TabItems\calendar_light.png" />
+    <Resource Include="Images\TabItems\group_dark.png" />
+    <Resource Include="Images\TabItems\group_light.png" />
+    <Resource Include="Images\TabItems\home_dark.png" />
+    <Resource Include="Images\TabItems\home_light.png" />
+    <Resource Include="Images\TabItems\marks_dark.png" />
+    <Resource Include="Images\TabItems\marks_light.png" />
+    <Resource Include="Images\TabItems\payments_dark.png" />
+    <Resource Include="Images\TabItems\payments_light.png" />
+    <Resource Include="Images\TabItems\settings_dark.png" />
+    <Resource Include="Images\TabItems\settings_light.png" />
+    <Resource Include="Images\TabItems\stats_dark.png" />
+    <Resource Include="Images\TabItems\stats_light.png" />
+    <Resource Include="Images\TabItems\student_boy_dark.png" />
+    <Resource Include="Images\TabItems\student_boy_light.png" />
+    <Resource Include="Images\TabItems\student_man_dark.png" />
+    <Resource Include="Images\TabItems\teacher_male_dark.png" />
+    <Resource Include="Images\TabItems\teacher_male_light.png" />
+    <Resource Include="Images\TabItems\timetable_dark.png" />
+    <Resource Include="Images\TabItems\timetable_light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>
