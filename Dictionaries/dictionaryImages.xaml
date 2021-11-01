@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Default Student mages -->
+    <ImageSource x:Key="imgMan">../Images/DefaultProfilePhoto/student_man.png</ImageSource>
+    <ImageSource x:Key="imgBoy">../Images/DefaultProfilePhoto/student_boy.png</ImageSource>
+    <ImageSource x:Key="imgWomen">../Images/DefaultProfilePhoto/student_women.png</ImageSource>
+    <ImageSource x:Key="imgGirl">../Images/DefaultProfilePhoto/student_girl.png</ImageSource>
+
+    <!-- Default Group Images -->
+    <ImageSource x:Key="imgDefault">../Images/GroupIcons/default_group.png</ImageSource>
+    <ImageSource x:Key="imgInfants">../Images/GroupIcons/infants_group.png</ImageSource>
+    <ImageSource x:Key="imgPrimary">../Images/GroupIcons/primary_group.png</ImageSource>
+    <ImageSource x:Key="imgSecondary">../Images/GroupIcons/secondary_group.png</ImageSource>
+    <ImageSource x:Key="imgA1">../Images/GroupIcons/a1_group.png</ImageSource>
+    <ImageSource x:Key="imgA2">../Images/GroupIcons/a2_group.png</ImageSource>
+    <ImageSource x:Key="imgB1">../Images/GroupIcons/b1_group.png</ImageSource>
+    <ImageSource x:Key="imgB2">../Images/GroupIcons/b2_group.png</ImageSource>
+    <ImageSource x:Key="imgC1">../Images/GroupIcons/c1_group.png</ImageSource>
+    <ImageSource x:Key="imgC2">../Images/GroupIcons/c2_group.png</ImageSource>
+</ResourceDictionary>

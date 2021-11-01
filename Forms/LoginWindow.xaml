@@ -1,0 +1,56 @@
+﻿<Window x:Class="LoginWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ProjectAcademy"
+    WindowStyle="SingleBorderWindow"
+    Title="English Academy Manager" HorizontalAlignment="Left" Background="{DynamicResource clrNormalBlue}" Icon="../Images/App/icon.png"
+        MinWidth="850" MinHeight="600"
+        Height="{Binding SystemParameters.PrimaryScreenHeight}" 
+        Width="{Binding SystemParameters.PrimaryScreenWidth}"
+        WindowState="Maximized" >
+    <Window.Resources>
+        <!-- Configuration Visibility or Hidden Converter -->
+        <local:clsConfigurationVisibilityConverter x:Key="ConfigurationVisibleConvert" />
+
+        <!-- Style Title Application -->
+        <Style x:Key="styleTitleApplication">
+            <Setter Property="Panel.Margin" Value="30,0,30,0" />
+            <Setter Property="TextBlock.Padding" Value="20,30,20,30" />
+            <Setter Property="TextBlock.FontSize" Value="45" />
+            <Setter Property="TextBlock.FontWeight" Value="SemiBold" />
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrBlueWhite}" />
+            <Setter Property="TextBlock.HorizontalAlignment" Value="Center" />
+            <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
+        </Style>
+
+        <!-- Style Login Panel -->
+        <Style x:Key="styleLoginPanel">
+            <Setter Property="Border.MaxWidth" Value="700" />
+            <Setter Property="Border.MinHeight" Value="380" />
+            <Setter Property="Border.VerticalAlignment" Value="Center" />
+            <Setter Property="TextBlock.FontSize" Value="15" />
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource clrDarkestBlue}" />
+            <Setter Property="Border.Background" Value="{DynamicResource clrLightestBlue}" />
+            <Setter Property="Border.CornerRadius" Value="2,2,2,2" />
+            <Setter Property="Border.BorderThickness" Value="4" />
+            <Setter Property="Border.BorderBrush" Value="{DynamicResource clrDarkestBlue}" />
+        </Style>
+    </Window.Resources>
+    <Border Name="pnlLogin" Style="{DynamicResource styleLoginPanel}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Title Application -->
+            <Border Grid.Row="0" Background="{DynamicResource clrDarkestBlue}" BorderBrush="{DynamicResource clrBlueBlack}"
+                                BorderThickness="2" CornerRadius="1,1,0,0" HorizontalAlignment="Stretch" Margin="-2">
+                <TextBlock Text="{DynamicResource app.title}" Style="{DynamicResource styleTitleApplication}" />
+            </Border>
+
+            <!-- Login Container -->
+            <local:ctrlLogin Grid.Row="1" Margin="0,0,0,50"></local:ctrlLogin>
+        </Grid>
+    </Border>
+</Window>

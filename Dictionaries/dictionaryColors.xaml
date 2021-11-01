@@ -1,0 +1,69 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Colors -->
+    <SolidColorBrush x:Key="clrBlueWhite">#FFD0DDF1</SolidColorBrush>
+    <SolidColorBrush x:Key="clrBlueWhiteLess">#FFD0DDF1</SolidColorBrush>
+    <SolidColorBrush x:Key="clrLightestBlue">#849CC1</SolidColorBrush>
+    <SolidColorBrush x:Key="clrLightBlue">#55739F</SolidColorBrush>
+    <SolidColorBrush x:Key="clrDarkBlue">#224374</SolidColorBrush>
+    <SolidColorBrush x:Key="clrDarkestBlue">#0F2F5A</SolidColorBrush>
+    <SolidColorBrush x:Key="clrNormalBlue">#375888</SolidColorBrush>
+    <SolidColorBrush x:Key="clrBlueBlack">#FF061B3C</SolidColorBrush>
+    <SolidColorBrush x:Key="clrRed">#D46A6A</SolidColorBrush>
+    <SolidColorBrush x:Key="clrYellow">#F2E178</SolidColorBrush>
+    <SolidColorBrush x:Key="clrGreen">#8CBE5F</SolidColorBrush>
+    <SolidColorBrush x:Key="clrOrange">#FFA857</SolidColorBrush>
+    
+    <!-- Gradients -->
+    <!-- Gradient Disabled TextBox  -->
+    <LinearGradientBrush x:Key="grdntDisabledTextBoxes" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#FFD0DDF1"/>
+        <GradientStop Offset="1" Color="#849CC1"/>
+    </LinearGradientBrush>
+    
+    <!-- Gradient Dark Headers  -->
+    <LinearGradientBrush x:Key="grdntDarkHeaders" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#FFC1D2EE"/>
+        <GradientStop Offset="0.2" Color="#375888"/>
+        <GradientStop Offset="0.8" Color="#0F2F5A"/>
+        <GradientStop Offset="1" Color="#FF061B3C"/>
+    </LinearGradientBrush>
+    
+    <!-- Gradient Selected Tab -->
+    <LinearGradientBrush x:Key="grdntSelectedTabBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#375888"/>
+        <GradientStop Offset="1" Color="#0F2F5A"/>
+    </LinearGradientBrush>
+
+    <!-- Gradient Unselected Tab -->
+    <LinearGradientBrush x:Key="grdntUnselectedTabBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#55739F"/>
+        <GradientStop Offset="1" Color="#849CC1"/>
+    </LinearGradientBrush>
+
+    <!-- Gradient Hover Tab -->
+    <LinearGradientBrush x:Key="grdntHoverTabBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="White"/>
+        <GradientStop Offset="1" Color="#375888"/>
+    </LinearGradientBrush>
+
+    <!-- Settings TabControl -->
+    <!-- Gradient Selected Tab -->
+    <LinearGradientBrush x:Key="grdntSelectedSettingsTabBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#55739F"/>
+        <GradientStop Offset="1" Color="#849CC1"/>
+    </LinearGradientBrush>
+
+    <!-- Gradient Unselected Tab -->
+    <LinearGradientBrush x:Key="grdntUnselectedSettingsTabBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#375888"/>
+        <GradientStop Offset="1" Color="#0F2F5A"/>
+    </LinearGradientBrush>
+
+    <!-- Gradient Hover Tab -->
+    <LinearGradientBrush x:Key="grdntHoverSettingsTabBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="White"/>
+        <GradientStop Offset="1" Color="#375888"/>
+    </LinearGradientBrush>
+
+</ResourceDictionary>
